@@ -8,8 +8,8 @@ import './style.css'
 
 
 
-    const Login = ({ submitForm }) =>{
-        const { change,values,submitrefresh,errors} = Formvalid(valid);
+    const Login = ({ onSubmit }) =>{
+        const { change,values,submitrefresh,errors} = Formvalid(onSubmit,valid);
         return (
             <div className='form-content-right'>
                 <form onSubmit={submitrefresh} className='form' noValidate>
@@ -46,9 +46,12 @@ import './style.css'
                     <button className='form-input-btn' type='submit'>
                         Sign in
                     </button>
-                    <span className='form-input-login'>
-                        Register? here <a href='#'>here</a>
-                    </span>
+                    {/*<button className='form-input-btn' type='submit'>*/}
+                    {/*    Sign up*/}
+                    {/*</button>*/}
+                    {/*<span className='form-input-login'>*/}
+                    {/*    Register? here <a href='#'>here</a>*/}
+                    {/*</span>*/}
                 </form>
             </div>
         );
