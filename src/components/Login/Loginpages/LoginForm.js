@@ -6,7 +6,7 @@ import FormHandle from '../FormHandle'
 import loginImg from '../user-icon-trendy-flat-style-260nw-418179865.jpeg';
 import {useHistory} from "react-router-dom"
 import validation from '../Validation-data'
-
+import register from '../Registerpages/RegisterPage'
 
 const LoginForm =({ onSubmit }) =>
 {

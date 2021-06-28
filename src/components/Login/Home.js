@@ -5,6 +5,7 @@ import {BrowserRouter as Router,Route,Switch,Link } from 'react-router-dom'
 
 import LoginPage from './Loginpages/LoginPage'
 import Pricequote from "./Pricequote";
+import Register from './Registerpages/RegisterPage'
 
 const Home = () =>{
 
@@ -12,13 +13,13 @@ const Home = () =>{
         <Router>
             <div className='top-bar'>
                 <Link to ="/"> Login </Link>
-                <Link to ="/Pricequote">Register</Link>
+                <Link to ="/Register">Register</Link>
 
             </div>
 
             <Switch>
                 <Route path="/" exact component={LoginPage}/>
-                <Route path="/Register" exact component={Pricequote}/>
+                <Route path="/Register" exact component={Register}/>
             </Switch>
         </Router>
     );
