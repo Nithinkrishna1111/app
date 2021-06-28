@@ -1,20 +1,21 @@
 import {useState} from 'react';
-import './RegsiterForm.css'
+import './RegisterForm.css'
 
 import {BrowserRouter as Router,Route,Switch,Link } from 'react-router-dom'
 import FormHandle from '../FormHandle'
 import loginImg from '../user-icon-trendy-flat-style-260nw-418179865.jpeg';
 import {useHistory} from "react-router-dom"
 import validation from '../Validation-data'
+import BasicInformation from '../BasicInformation'
 
 
-const LoginForm =({ onSubmit }) =>
+const RegisterForm =({ onSubmit }) =>
 {
     let history =useHistory();
-    const [refresh,errors,userChangeHandler,pwdChangeHandler,enteredpassword,enteredUsername]=FormHandle(onSubmit,validation)
-    const signup=()=>{
-        history.push("/register")
-    }
+    const [refresh,errors,userChangeHandler,pwdChangeHandler,enteredpassword,enteredUsername,emailChangeHandler,pwdChangeHandler2,enteredEmail,enteredPassword2]=FormHandle(onSubmit,validation)
+    // const signup=()=>{
+    //     history.push("/BasicInformation")
+    // }
 
     return(
         <Router>
@@ -43,10 +44,10 @@ const LoginForm =({ onSubmit }) =>
                             type='Email'
                             name='email'
                             placeholder='Enter your Email'
-                            // value={enteredpassword}
-                            // onChange={pwdChangeHandler}
+                            value={enteredEmail}
+                            onChange={emailChangeHandler}
                         />
-                        {/*{errors.password && <p>{errors.password}</p>}*/}
+                        {errors.email && <p>{errors.email}</p>}
                     </div>
                     &nbsp;
                     <div className='LoginForm-Input'>
@@ -67,14 +68,14 @@ const LoginForm =({ onSubmit }) =>
                             type='Password'
                             name='password2'
                             placeholder='Reenter your password'
-                            // value={enteredpassword}
-                            // onChange={pwdChangeHandler}
+                            value={enteredPassword2}
+                            onChange={pwdChangeHandler2}
                         />
-                        {/*{errors.password && <p>{errors.password}</p>}*/}
+                        {errors.password2 && <p>{errors.password2}</p>}
                     </div>
                     &nbsp;&nbsp;&nbsp;
 
-                    <div className='LoginForm-Actions' onClick={signup}>
+                    <div className='LoginForm-Actions' onClick={refresh}>
                         <button type="submit" >Signup</button>
                     </div>
                 </div>
@@ -87,4 +88,4 @@ const LoginForm =({ onSubmit }) =>
 
     )
 }
-export default LoginForm
+export default RegisterForm
