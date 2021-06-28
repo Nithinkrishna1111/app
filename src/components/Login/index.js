@@ -15,7 +15,8 @@ const Index = () => {
         {/*<Pricequote/>*/}
         {!isSubmit?(<Login onSubmit={
           onSubmit}/>):<Pricequote/>}
-      </div>)
+      </div>
+  )
 
 };
 export default Index;

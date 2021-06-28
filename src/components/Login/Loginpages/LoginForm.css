@@ -1,0 +1,49 @@
+.Login-form{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.LoginForm-Input label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.LoginForm-Input input {
+    font: inherit;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 20rem;
+    max-width: 100%;
+}
+
+.LoginForm-Input p{
+    color: red;
+}
+.LoginForm-Actions {
+    text-align: center;
+    font: inherit;
+    cursor: pointer;
+
+}
+.LoginForm-Actions hover,
+.login-Form-Actions button:active {
+    background-color: #510674;
+    border-color: #510674;
+}
+.login-Form-Actions button.alternative {
+    color: #220131;
+    border-color: transparent;
+    background-color: transparent;
+}
+.login-Form-Actions button.alternative:hover,
+.login-Form-Actions button.alternative:active {
+    background-color: #ddb3f8;
+}
+.LoginForm-Signup{
+    text-align: center;
+}
