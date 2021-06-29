@@ -1,4 +1,3 @@
-import {useState} from "react";
 export default function Validationdata(values){
     let errors={}
     if(!values.username.trim()){
@@ -13,7 +12,7 @@ export default function Validationdata(values){
     if(!values.password2){
         errors.password2="Reenterpasword"
     }
-    else if(values.password2!=values.password){
+    else if(values.password2!==values.password){
         errors.password2="Passwords not matching"
     }
     if (!values.email) {

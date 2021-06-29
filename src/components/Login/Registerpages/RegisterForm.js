@@ -1,21 +1,19 @@
-import {useState} from 'react';
+
 import './RegisterForm.css'
 
-import {BrowserRouter as Router,Route,Switch,Link } from 'react-router-dom'
+import {BrowserRouter as Router } from 'react-router-dom'
 import FormHandle from '../FormHandle'
-import loginImg from '../user-icon-trendy-flat-style-260nw-418179865.jpeg';
-import {useHistory} from "react-router-dom"
-import validation from '../Validation-data'
-import BasicInformation from '../BasicInformation'
+import loginImg from '../Home/user-icon-trendy-flat-style-260nw-418179865.jpeg';
+
+import validation from './Validation-register'
+
 
 
 const RegisterForm =({ onSubmit }) =>
 {
-    let history =useHistory();
+
     const [refresh,errors,userChangeHandler,pwdChangeHandler,enteredpassword,enteredUsername,emailChangeHandler,pwdChangeHandler2,enteredEmail,enteredPassword2]=FormHandle(onSubmit,validation)
-    // const signup=()=>{
-    //     history.push("/BasicInformation")
-    // }
+
 
     return(
         <Router>
