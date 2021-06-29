@@ -1,7 +1,7 @@
-import {BrowserRouter as Router,Route,Switch,Link } from 'react-router-dom'
+
 import {useState} from "react";
 import LoginForm from "./LoginForm";
-import Pricequote from "../Pricequote";
+import Pricequote from "../PriceQuote/Pricequote";
 const LoginPage =()=>{
     const[isSubmit,setSubmit]=useState(false);
 
