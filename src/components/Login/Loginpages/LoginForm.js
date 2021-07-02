@@ -20,12 +20,11 @@ const LoginForm =({ onSubmit }) =>
         <Router>
             <form >
                 <div className='Login-Form'>
-                    <div className='image'>
-                        <img src={loginImg}/>
-                    </div>
+
                     &nbsp;&nbsp;&nbsp;
                     <div className='LoginForm-Input'>
                         {/*<label>Username</label>*/}
+                        <h1>Login</h1>
                         <input
                             type='text'
                             name='username'
@@ -34,7 +33,7 @@ const LoginForm =({ onSubmit }) =>
                             value={enteredUsername}
                             onChange={userChangeHandler}
                         />
-                        {errors.username && <p>{errors.username}</p>}
+                        {errors.username && <p>*{errors.username}</p>}
                     </div>
                     &nbsp;
                     <div className='LoginForm-Input'>
@@ -46,14 +45,16 @@ const LoginForm =({ onSubmit }) =>
                             value={enteredpassword}
                             onChange={pwdChangeHandler}
                         />
-                        {errors.password && <p>{errors.password}</p>}
+                        {errors.password && <p>*{errors.password}</p>}
                     </div>
-                    &nbsp;&nbsp;&nbsp;
-                    <div className='LoginForm-Actions' onClick={refresh}>
+                    &nbsp;
+                    &nbsp;
+                    &nbsp;
+                    <div className='loginBtn' onClick={refresh}>
                         <button type="submit" >Login</button>
                     </div>
                     &nbsp;&nbsp;&nbsp;
-                    <div className='LoginForm-Actions' onClick={signup}>
+                    <div className='loginBtn' onClick={signup}>
                         <button type="submit" >Signup</button>
                     </div>
                 </div>

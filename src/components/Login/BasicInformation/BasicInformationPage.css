@@ -1,4 +1,4 @@
-.login-page{
+.basic-page{
 
     padding: 1rem;
     margin: 2rem auto;
@@ -6,10 +6,10 @@
     max-width: 95%;
     border-radius: 12px;
     text-align: center;
-    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+    /*box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);*/
 }
 
-.login-page button {
+.basic-page button {
     font: inherit;
     cursor: pointer;
     padding: 0.7rem 2rem;
@@ -22,18 +22,25 @@
 
 
 
-.login-page button.alternative {
+.basic-page button.alternative {
     color: #220131;
     border-color: transparent;
     background-color: transparent;
 }
 
 
+.basic-page h1{
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 2.7em;
+    letter-spacing: -2px;
+    /*border-bottom: 2px solid black;*/
+
+    text-transform: uppercase;
+}
 
 
-
-.loginBtn:hover,
-.loginBtn:active {
+.basicBtn:hover,
+.basicBtn:active {
 
     -webkit-transform: translateY(-8px);
     transform: translateY(-8px);

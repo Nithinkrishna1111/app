@@ -1,4 +1,4 @@
-.login-page{
+.price-page{
 
     padding: 1rem;
     margin: 2rem auto;
@@ -6,10 +6,10 @@
     max-width: 95%;
     border-radius: 12px;
     text-align: center;
-    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+
 }
 
-.login-page button {
+.price-page button {
     font: inherit;
     cursor: pointer;
     padding: 0.7rem 2rem;
@@ -22,7 +22,7 @@
 
 
 
-.login-page button.alternative {
+.price-page button.alternative {
     color: #220131;
     border-color: transparent;
     background-color: transparent;
@@ -32,8 +32,8 @@
 
 
 
-.loginBtn:hover,
-.loginBtn:active {
+.priceBtn:hover,
+.priceBtn:active {
 
     -webkit-transform: translateY(-8px);
     transform: translateY(-8px);
