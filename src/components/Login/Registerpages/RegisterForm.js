@@ -3,7 +3,7 @@ import './RegisterForm.css'
 
 import {BrowserRouter as Router } from 'react-router-dom'
 import FormHandle from '../FormHandle'
-import loginImg from '../Home/user-icon-trendy-flat-style-260nw-418179865.jpeg';
+import RegisterImg from '../Home/user-icon-trendy-flat-style-260nw-418179865.jpeg';
 
 import validation from './Validation-register'
 
@@ -18,13 +18,14 @@ const RegisterForm =({ onSubmit }) =>
     return(
         <Router>
             <form >
-                <div className='Login-Form'>
-                    <div className='image'>
-                        <img src={loginImg}/>
-                    </div>
+                <div className='Register-Form'>
+                    {/*<div className='image'>*/}
+                    {/*    <img src={RegisterImg}/>*/}
+                    {/*</div>*/}
                     &nbsp;&nbsp;&nbsp;
-                    <div className='LoginForm-Input'>
+                    <div className='RegisterForm-Input'>
                         {/*<label>Username</label>*/}
+                        <h1>Register</h1>
                         <input
                             type='text'
                             name='username'
@@ -33,10 +34,10 @@ const RegisterForm =({ onSubmit }) =>
                             value={enteredUsername}
                             onChange={userChangeHandler}
                         />
-                        {errors.username && <p>{errors.username}</p>}
+                        {errors.username && <p>*{errors.username}</p>}
                     </div>
                     &nbsp;
-                    <div className='LoginForm-Input'>
+                    <div className='RegisterForm-Input'>
                         {/*<label>Password</label>*/}
                         <input
                             type='Email'
@@ -45,10 +46,10 @@ const RegisterForm =({ onSubmit }) =>
                             value={enteredEmail}
                             onChange={emailChangeHandler}
                         />
-                        {errors.email && <p>{errors.email}</p>}
+                        {errors.email && <p>*{errors.email}</p>}
                     </div>
                     &nbsp;
-                    <div className='LoginForm-Input'>
+                    <div className='RegisterForm-Input'>
                         {/*<label>Password</label>*/}
                         <input
                             type='Password'
@@ -57,10 +58,10 @@ const RegisterForm =({ onSubmit }) =>
                             value={enteredpassword}
                             onChange={pwdChangeHandler}
                         />
-                        {errors.password && <p>{errors.password}</p>}
+                        {errors.password && <p>*{errors.password}</p>}
                     </div>
                     &nbsp;
-                    <div className='LoginForm-Input'>
+                    <div className='RegisterForm-Input'>
                         {/*<label>Password</label>*/}
                         <input
                             type='Password'
@@ -69,11 +70,11 @@ const RegisterForm =({ onSubmit }) =>
                             value={enteredPassword2}
                             onChange={pwdChangeHandler2}
                         />
-                        {errors.password2 && <p>{errors.password2}</p>}
+                        {errors.password2 && <p>*{errors.password2}</p>}
                     </div>
                     &nbsp;&nbsp;&nbsp;
 
-                    <div className='LoginForm-Actions' onClick={refresh}>
+                    <div className='RegisterBtn' onClick={refresh}>
                         <button type="submit" >Signup</button>
                     </div>
                 </div>

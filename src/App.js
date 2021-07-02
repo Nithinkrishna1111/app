@@ -1,14 +1,16 @@
 
 import React from "react";
 
-import LoginPage from './components/Login/Loginpages/LoginPage'
+
 import Home from './components/Login/Home/Home'
-import Index from "./components/Login";
+import quote from './components/Login/PriceQuote/PricequoteForm'
+import PricequoteForm from "./components/Login/PriceQuote/PricequoteForm";
+import Pricequote from "./components/Login/PriceQuote/Pricequote";
+import FuelQuoteHistory from "./components/Login/FuelQuoteHistory/FuelQuoteHistory";
+
 function App() {
     return (
         <div className="App">
-            <h1>ram tadi</h1>
-
             <Home/>
         </div>
     );

@@ -6,7 +6,7 @@ import {BrowserRouter as Router,Route,Switch,Link } from 'react-router-dom'
 import LoginPage from '../Loginpages/LoginPage'
 import Pricequote from "../PriceQuote/Pricequote";
 import Register from '../Registerpages/RegisterPage'
-
+import './Home.css'
 const Home = () =>{
 
     return(

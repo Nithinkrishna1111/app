@@ -1,7 +1,8 @@
 import {useState} from "react";
-
+import priceqoute from '../PriceQuote/Pricequote'
 import BasicInformationPage from '../BasicInformation/BasicInformationPage'
 import RegisterForm from "./RegisterForm";
+import './RegisterPage.css'
 const RegisterPage =()=>{
     const[isSubmit,setSubmit]=useState(false);
 
@@ -11,8 +12,8 @@ const RegisterPage =()=>{
 
 
     return(
-        <div className='login-page'>
-            <div className='login'>
+        <div className='register-page'>
+            <div className='register'>
                 {(!isSubmit?(<RegisterForm onSubmit={
                     onSubmit}/>):<BasicInformationPage/>)}
             </div>
