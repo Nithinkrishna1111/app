@@ -64,7 +64,7 @@ const PricequoteForm=( {onSubmit} )=> {
                     &nbsp;
                     <div className='LoginForm-Input'>
                         <label>Total Amount Due</label>
-                        <input readOnly value={5*qprice}placeholder='Quote' />
+                        <input readOnly value={gallons*qprice}placeholder='Quote' />
 
                     </div>
                     &nbsp;

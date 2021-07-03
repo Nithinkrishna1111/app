@@ -38,7 +38,7 @@ const RegisterForm =({ onSubmit }) =>
                     </div>
                     &nbsp;
                     <div className='RegisterForm-Input'>
-                        {/*<label>Password</label>*/}
+                        
                         <input
                             type='Email'
                             name='email'

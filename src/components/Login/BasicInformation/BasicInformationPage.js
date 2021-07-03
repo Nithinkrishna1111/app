@@ -18,7 +18,7 @@ const BasicInformationPage =()=>{
                 {(!isSubmit?(<BasicInformationForm onSubmit={
                     onSubmit}/>):<Pricequote/>)}
             </div>
-i
+
         </div>
 
     )
