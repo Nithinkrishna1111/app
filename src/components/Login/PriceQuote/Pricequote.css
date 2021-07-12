@@ -30,7 +30,9 @@
 
 
 
-
+.header{
+    color: #2a2a2a;
+}
 
 .priceBtn:hover,
 .priceBtn:active {
