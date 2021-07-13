@@ -68,7 +68,9 @@ const PricequoteForm=( {onSubmit} )=> {
 
                     </div>
                     &nbsp;
-                   
+                    <div className='loginBtn' onClick={refresh}>
+                        <button type="submit" >Generate</button>
+                    </div>
 
                 </div>
             </form>

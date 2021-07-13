@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from "axios";
+// import axios from "axios";
 import {useHistory} from "react-router-dom";
 const FormHandle=(callback,validation)=>{
 
@@ -31,8 +31,8 @@ const FormHandle=(callback,validation)=>{
 
 
     let history =useHistory();
-    const fuelquotehistory=()=>{
-        history.push("/PriceQuote")
+    const BasicInformationHandle=()=>{
+        history.push("/BasicInformation")
     }
     const refresh = e =>{
         e.preventDefault()
@@ -52,6 +52,7 @@ const FormHandle=(callback,validation)=>{
     useEffect(() =>{
             if(Object.keys(errors).length===0 && isSubmit){
                 callback();
+                BasicInformationHandle()
 
 
             }
