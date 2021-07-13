@@ -7,6 +7,9 @@ import LoginPage from '../Loginpages/LoginPage'
 import Pricequote from "../PriceQuote/Pricequote";
 import Register from '../Registerpages/RegisterPage'
 import './Home.css'
+import BasicInformationPage from "../BasicInformation/BasicInformationPage";
+
+import FuelQuoteHistoryPage from "../FuelQuoteHistory/FuelQuoteHistoryPage";
 const Home = () =>{
 
     return(
@@ -20,6 +23,9 @@ const Home = () =>{
             <Switch>
                 <Route path="/" exact component={LoginPage}/>
                 <Route path="/Register" exact component={Register}/>
+                <Route path="/BasicInformation" exact component={BasicInformationPage}/>
+                <Route path="/FuelQuoteHistory" exact component={FuelQuoteHistoryPage}/>
+                <Route path="/PriceQuote" exact component={Pricequote}/>
             </Switch>
         </Router>
     );

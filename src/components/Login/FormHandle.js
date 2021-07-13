@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import axios from "axios";
 
 const FormHandle=(callback,validation)=>{
 
@@ -25,17 +26,20 @@ const FormHandle=(callback,validation)=>{
     const [errors,setErrors]=useState({})
     const [isSubmit,setsubmit]=useState(false);
 
-
+    const values={username:enteredUsername,password:enteredpassword,email:enteredEmail,password2:enteredPassword2}
     const refresh = e =>{
         e.preventDefault()
-        const values={username:enteredUsername,password:enteredpassword,email:enteredEmail,password2:enteredPassword2}
+
         console.log(values)
         setErrors(validation(values))
-        setsubmit(true);
+        setsubmit(true)
+        // axios.post('http://localhost:/4000')
         setEnteredUsername('')
         setEnteredPassword('')
         setEnteredPassword2('')
         setEnteredEmail('')
+
+
 
 
     };
@@ -45,6 +49,7 @@ const FormHandle=(callback,validation)=>{
             }
     },[errors]
     );
+
     return [refresh,errors,userChangeHandler,pwdChangeHandler,enteredpassword,enteredUsername,emailChangeHandler,pwdChangeHandler2,enteredEmail,enteredPassword2];
 };
 

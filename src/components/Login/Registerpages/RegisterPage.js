@@ -11,12 +11,16 @@ const RegisterPage =()=>{
     }
 
 
+
+
+
     return(
         <div className='register-page'>
             <div className='register'>
                 {(!isSubmit?(<RegisterForm onSubmit={
                     onSubmit}/>):<BasicInformationPage/>)}
             </div>
+
 
         </div>
 
