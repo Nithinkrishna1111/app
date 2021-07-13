@@ -24,7 +24,7 @@ const Pricequote = () => {
                         onSubmit}/>) : <FuelQuoteHistoryPage/>)}
                 </div>
                 &nbsp;
-                <Header/>
+
 
             </div>
         </Fragment>

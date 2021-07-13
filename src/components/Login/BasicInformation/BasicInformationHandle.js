@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import {useHistory} from "react-router-dom";
+
 
 const BasicFormHandle=(callback,validation)=>{
     const[enteredFullName,setEnteredFullName]=useState('')
@@ -36,7 +38,10 @@ const BasicFormHandle=(callback,validation)=>{
         e.preventDefault()
         setamount(enteredZipcode*2)
     }
-
+    let history =useHistory();
+    const fuelquote=()=>{
+        history.push("/PriceQuote")
+    }
 
 
 
@@ -69,6 +74,7 @@ const BasicFormHandle=(callback,validation)=>{
     useEffect(() =>{
             if(Object.keys(errors).length===0 && isSubmit){
                 callback();
+                fuelquote();
             }
         },[errors]
     );

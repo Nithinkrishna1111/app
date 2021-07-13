@@ -21,7 +21,7 @@ const FuelQuoteHistoryPage=()=>{
     const [items, setItems] = useState([]);
 
     const fetchItems = async () => {
-        const data = await fetch('/history');
+        const data = await fetch('/FuelQuoteHistory');
         const items = await data.json();
         setItems(items)
     }

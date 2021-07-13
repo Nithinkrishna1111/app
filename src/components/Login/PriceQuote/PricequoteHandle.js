@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import {useHistory} from "react-router-dom";
 
 const PricequoteHandle=(callback,validation)=>{
     const [gallons, setGallons] = useState(0);
@@ -27,6 +28,10 @@ const PricequoteHandle=(callback,validation)=>{
     const [errors,setErrors]=useState({})
     const [isSubmit,setsubmit]=useState(false);
 
+    let history =useHistory();
+    const historyHandle=()=>{
+        history.push("/FuelQuoteHistory")
+    }
 
     const refresh = e =>{
         e.preventDefault()
@@ -46,6 +51,7 @@ const PricequoteHandle=(callback,validation)=>{
     useEffect(() =>{
             if(Object.keys(errors).length===0 && isSubmit){
                 callback();
+                historyHandle()
             }
         },[errors]
     );
