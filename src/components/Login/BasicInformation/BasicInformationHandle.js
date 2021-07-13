@@ -43,14 +43,17 @@ const BasicFormHandle=(callback,validation)=>{
     const [errors,setErrors]=useState({})
     const [isSubmit,setsubmit]=useState(false);
 
+    const values={fullname:enteredFullName,address1:enteredAddress1,address2:enteredAddress2,city:enteredCity,state:enteredState,zipcode:enteredZipcode}
+    const loginvalues=[]
+    loginvalues.push(values)
 
     const refresh = e =>{
         e.preventDefault()
-        const values={fullname:enteredFullName,address1:enteredAddress1,address2:enteredAddress2,city:enteredCity,state:enteredState,zipcode:enteredZipcode}
+
         console.log(values)
         setErrors(validation(values))
         setsubmit(true);
-
+        console.log(loginvalues)
         setEnteredFullName('')
         setEnteredAddress1('')
         setEnteredAddress2('')
@@ -61,6 +64,8 @@ const BasicFormHandle=(callback,validation)=>{
 
 
     };
+
+
     useEffect(() =>{
             if(Object.keys(errors).length===0 && isSubmit){
                 callback();

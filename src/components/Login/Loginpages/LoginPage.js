@@ -1,29 +1,23 @@
-import {Fragment, useState} from "react";
+
+import {useState} from "react";
 import LoginForm from "./LoginForm";
 import Pricequote from "../PriceQuote/Pricequote";
+const LoginPage =()=>{
+    const[isSubmit,setSubmit]=useState(false);
 
-import Header from "../layout/Header"
-const LoginPage = () => {
-    const [isSubmit, setSubmit] = useState(false);
-
-    function onSubmit() {
+    function onSubmit(){
         setSubmit(true);
     }
 
 
-    return (
-        <Fragment>
-
-            <div className='login-page'>
-                <div className='login'>
-                    {/*{(!isSubmit ? (<LoginForm onSubmit={*/}
-                    {/*    onSubmit}/>) : <Pricequote/>)}*/}
-                    {!isSubmit && <LoginForm onSubmit={onSubmit}/> }
-                    {isSubmit && <Pricequote/>}
-                </div>
-
+    return(
+        <div className='login-page'>
+            <div className='login'>
+                {(!isSubmit?(<LoginForm onSubmit={
+                    onSubmit}/>):<Pricequote/>)}
             </div>
-        </Fragment>
+
+        </div>
 
     )
 }

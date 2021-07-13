@@ -1,30 +1,23 @@
+
 import './RegisterForm.css'
 
-import {BrowserRouter as Router} from 'react-router-dom'
-import FormHandle from '../FormHandle'
+import {BrowserRouter as Router } from 'react-router-dom'
+import FormHandle from './FormHandle'
 import RegisterImg from '../Home/user-icon-trendy-flat-style-260nw-418179865.jpeg';
-import {useEffect, useState} from "react";
+
 import validation from './Validation-register'
 
 
-const RegisterForm = ({onSubmit}) => {
 
-    const [refresh, errors, userChangeHandler, pwdChangeHandler, enteredpassword, enteredUsername, emailChangeHandler, pwdChangeHandler2, enteredEmail, enteredPassword2] = FormHandle(onSubmit, validation)
-    const [initialState, setInitialState] = useState([])
-    useEffect(()=>{
-        fetchItems();
-    },[]);
-    const [items, setItems] = useState([]);
+const RegisterForm =({ onSubmit }) =>
+{
 
-    const fetchItems = async () => {
-        const data = await fetch('/register');
-        const items = await data.json();
-        setItems(items)
-    }
+    const [refresh,errors,userChangeHandler,pwdChangeHandler,enteredpassword,enteredUsername,emailChangeHandler,pwdChangeHandler2,enteredEmail,enteredPassword2]=FormHandle(onSubmit,validation)
 
-    return (
+
+    return(
         <Router>
-            <form>
+            <form >
                 <div className='Register-Form'>
                     {/*<div className='image'>*/}
                     {/*    <img src={RegisterImg}/>*/}
@@ -45,7 +38,7 @@ const RegisterForm = ({onSubmit}) => {
                     </div>
                     &nbsp;
                     <div className='RegisterForm-Input'>
-
+                        
                         <input
                             type='Email'
                             name='email'
@@ -82,23 +75,14 @@ const RegisterForm = ({onSubmit}) => {
                     &nbsp;&nbsp;&nbsp;
 
                     <div className='RegisterBtn' onClick={refresh}>
-                        <button type="submit">Signup</button>
+                        <button type="submit" >Signup</button>
                     </div>
-
-                    {
-                        items.map(item => (
-                            <div>
-                                <p>{item.username}</p>
-                                <p>{item.email}</p>
-                                <p>{item.password}</p>
-                                <p>{item.renterpassword}</p>
-                            </div>
-
-                        ))
-                    }
                 </div>
             </form>
         </Router>
+
+
+
 
 
     )

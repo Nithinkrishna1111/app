@@ -47,16 +47,15 @@ const FormHandle=(callback,validation)=>{
         setEnteredPassword2('')
         setEnteredEmail('')
 
-
-
-
     };
+
     useEffect(() =>{
-        if(Object.keys(errors).length===0 && isSubmit){
-            callback();
-            fuelquotehistory()
+            if(Object.keys(errors).length===0 && isSubmit){
+                callback();
+
+
             }
-    },[errors]
+        },[errors]
     );
 
     return [refresh,errors,userChangeHandler,pwdChangeHandler,enteredpassword,enteredUsername,emailChangeHandler,pwdChangeHandler2,enteredEmail,enteredPassword2];

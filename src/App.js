@@ -9,8 +9,10 @@ import Pricequote from "./components/Login/PriceQuote/Pricequote";
 import FuelQuoteHistory from "./components/Login/FuelQuoteHistory/FuelQuoteHistory";
 
 function App() {
+
     return (
         <div className="App">
+
             <Home/>
         </div>
     );

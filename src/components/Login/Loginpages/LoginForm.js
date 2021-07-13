@@ -2,7 +2,7 @@
 import './LoginForm.css'
 
 import {BrowserRouter as Router} from 'react-router-dom'
-import FormHandle from '../FormHandle'
+import FormHandle from './FormHandle'
 import loginImg from '../Home/user-icon-trendy-flat-style-260nw-418179865.jpeg';
 import {useHistory} from "react-router-dom"
 import validation from './Validation-data'
