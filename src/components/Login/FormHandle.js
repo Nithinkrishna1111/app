@@ -23,6 +23,7 @@ const FormHandle=(callback,validation)=>{
         setEnteredEmail(e.target.value)
     }
 
+
     const [errors,setErrors]=useState({})
     const [isSubmit,setsubmit]=useState(false);
 
