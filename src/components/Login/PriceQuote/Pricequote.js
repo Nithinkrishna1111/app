@@ -6,12 +6,14 @@ import './Pricequote.css'
 import Header from "../layout/Header";
 
 
+
 const Pricequote = () => {
     const [isSubmit, setSubmit] = useState(false);
 
     function onSubmit() {
         setSubmit(true);
     }
+
 
     return (
         <Fragment>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from "axios";
-
+import {useHistory} from "react-router-dom";
 const FormHandle=(callback,validation)=>{
 
     const[enteredUsername,setEnteredUsername]=useState('')
@@ -27,12 +27,19 @@ const FormHandle=(callback,validation)=>{
     const [isSubmit,setsubmit]=useState(false);
 
     const values={username:enteredUsername,password:enteredpassword,email:enteredEmail,password2:enteredPassword2}
+
+
+    let history =useHistory();
+    const fuelquotehistory=()=>{
+        history.push("/PriceQuote")
+    }
     const refresh = e =>{
         e.preventDefault()
 
         console.log(values)
         setErrors(validation(values))
         setsubmit(true)
+
         // axios.post('http://localhost:/4000')
         setEnteredUsername('')
         setEnteredPassword('')
@@ -46,6 +53,7 @@ const FormHandle=(callback,validation)=>{
     useEffect(() =>{
         if(Object.keys(errors).length===0 && isSubmit){
             callback();
+            fuelquotehistory()
             }
     },[errors]
     );

@@ -22,7 +22,7 @@ const Home = () =>{
 
             <Switch>
                 <Route path="/" exact component={LoginPage}/>
-                <Route path="/Register" exact component={Register}/>
+                <Route path="/register" exact component={Register}/>
                 <Route path="/BasicInformation" exact component={BasicInformationPage}/>
                 <Route path="/FuelQuoteHistory" exact component={FuelQuoteHistoryPage}/>
                 <Route path="/PriceQuote" exact component={Pricequote}/>
