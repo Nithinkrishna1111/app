@@ -1,47 +1,67 @@
-import { useState, useEffect } from 'react';
-// import axios from "axios";
+import {useState, useEffect} from 'react';
+import axios from "axios";
 import {useHistory} from "react-router-dom";
-const FormHandle=(callback,validation)=>{
 
-    const[enteredUsername,setEnteredUsername]=useState('')
-    const userChangeHandler=(e) =>{
+const FormHandle = (callback, validation) => {
+
+    const [enteredUsername, setEnteredUsername] = useState('')
+    const userChangeHandler = (e) => {
         setEnteredUsername(e.target.value)
     }
 
-    const [enteredpassword,setEnteredPassword]=useState('')
-    const pwdChangeHandler=(e) =>{
+    const [enteredpassword, setEnteredPassword] = useState('')
+    const pwdChangeHandler = (e) => {
         setEnteredPassword(e.target.value)
     }
 
-    const [enteredPassword2,setEnteredPassword2]=useState('')
-    const pwdChangeHandler2=(e) =>{
+    const [enteredPassword2, setEnteredPassword2] = useState('')
+    const pwdChangeHandler2 = (e) => {
         setEnteredPassword2(e.target.value)
     }
 
-    const [enteredEmail,setEnteredEmail]=useState('')
-    const emailChangeHandler=(e) =>{
+    const [enteredEmail, setEnteredEmail] = useState('')
+    const emailChangeHandler = (e) => {
         setEnteredEmail(e.target.value)
     }
 
 
-    const [errors,setErrors]=useState({})
-    const [isSubmit,setsubmit]=useState(false);
+    const [errors, setErrors] = useState({})
+    const [isSubmit, setsubmit] = useState(false);
+    const[mesage,setmesage]=useState(null)
 
-    const values={username:enteredUsername,password:enteredpassword,email:enteredEmail,password2:enteredPassword2}
+    const values = {
+        username: enteredUsername,
+        email: enteredEmail,
+        password: enteredpassword,
+        password2: enteredPassword2
+    }
 
 
-    let history =useHistory();
-    const BasicInformationHandle=()=>{
+    let history = useHistory();
+    const BasicInformationHandle = () => {
         history.push("/BasicInformation")
     }
-    const refresh = e =>{
+    const refresh = async (e) => {
         e.preventDefault()
 
-        console.log(values)
+        const response=await axios.post('http://localhost:/5000/register', values).catch((err) => {
+            if (err && err.response)
+                console.log("Error",err);
+            // console.log(values)
+
+
+        })
         setErrors(validation(values))
         setsubmit(true)
 
-        // axios.post('http://localhost:/4000')
+
+        // if(response && response.data){
+        //     setmesage(response.data)
+        // }
+        // if(response){
+        //
+        // }
+
         setEnteredUsername('')
         setEnteredPassword('')
         setEnteredPassword2('')
@@ -49,17 +69,23 @@ const FormHandle=(callback,validation)=>{
 
     };
 
-    useEffect(() =>{
-            if(Object.keys(errors).length===0 && isSubmit){
+    useEffect(() => {
+            if (Object.keys(errors).length === 0 && isSubmit) {
                 callback();
+
+
+
+
+
                 BasicInformationHandle()
 
 
+
             }
-        },[errors]
+        }, [errors]
     );
 
-    return [refresh,errors,userChangeHandler,pwdChangeHandler,enteredpassword,enteredUsername,emailChangeHandler,pwdChangeHandler2,enteredEmail,enteredPassword2];
+    return [refresh, errors, userChangeHandler, pwdChangeHandler, enteredpassword, enteredUsername, emailChangeHandler, pwdChangeHandler2, enteredEmail, enteredPassword2];
 };
 
 export default FormHandle;

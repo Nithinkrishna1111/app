@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from "axios";
 import {useHistory} from "react-router-dom";
+import fire from "../../../fire";
 const FormHandle=(callback,validation)=>{
 
     const[enteredUsername,setEnteredUsername]=useState('')
@@ -26,6 +27,10 @@ const FormHandle=(callback,validation)=>{
 
     const [errors,setErrors]=useState({})
     const [isSubmit,setsubmit]=useState(false);
+    const[data,setData]=useState({
+        name:enteredUsername
+    })
+
 
     const values={username:enteredUsername,password:enteredpassword,email:enteredEmail,password2:enteredPassword2}
 
@@ -41,7 +46,14 @@ const FormHandle=(callback,validation)=>{
         setErrors(validation(values))
         setsubmit(true)
 
-        // axios.post('http://localhost:/4000')
+        // axios.post('http://localhost:8080/',{name:data.name}).then(res=>{
+        //     console.log(res.data).catch(error=>{
+        //         console.log(error)
+        //     })
+        // })
+        // fire.auth().signInWithEmailAndPassword(enteredUsername,enteredpassword).then((u)=>{console.log(u)}).catch((err)=>{
+        //     console.log(err)
+        // })
         setEnteredUsername('')
         setEnteredPassword('')
         setEnteredPassword2('')

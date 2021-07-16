@@ -6,6 +6,7 @@ import FormHandle from './FormHandle'
 import loginImg from '../Home/user-icon-trendy-flat-style-260nw-418179865.jpeg';
 import {useHistory} from "react-router-dom"
 import validation from './Validation-data'
+import {useState,useEffect} from "react";
 
 
 const LoginForm =({ onSubmit }) =>
@@ -15,6 +16,15 @@ const LoginForm =({ onSubmit }) =>
     const signup=()=>{
         history.push("/register")
     }
+    // const[intialState,setIntialState]=useState([])
+    // useEffect(()=>{
+    //     fetch('/').then(res=>{
+    //         if(res.ok){
+    //             return res.json()
+    //         }
+    //     }).then(jsonResponse=> setIntialState(jsonResponse))
+    // },[])
+    // console.log(intialState)
 
     return(
         <Router>

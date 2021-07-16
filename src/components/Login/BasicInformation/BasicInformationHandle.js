@@ -38,27 +38,24 @@ const BasicFormHandle=(callback,validation)=>{
         e.preventDefault()
         setamount(enteredZipcode*2)
     }
-    let history =useHistory();
-    const fuelquote=()=>{
-        history.push("/PriceQuote")
-    }
+
 
 
 
     const [errors,setErrors]=useState({})
     const [isSubmit,setsubmit]=useState(false);
 
-    const values={fullname:enteredFullName,address1:enteredAddress1,address2:enteredAddress2,city:enteredCity,state:enteredState,zipcode:enteredZipcode}
-    const loginvalues=[]
-    loginvalues.push(values)
-
+    let history =useHistory();
+    const BasicInformationHandler=()=>{
+        history.push("/BasicInformation")
+    }
     const refresh = e =>{
         e.preventDefault()
-
+        const values={fullname:enteredFullName,address1:enteredAddress1,address2:enteredAddress2,city:enteredCity,state:enteredState,zipcode:enteredZipcode}
         console.log(values)
         setErrors(validation(values))
         setsubmit(true);
-        console.log(loginvalues)
+
         setEnteredFullName('')
         setEnteredAddress1('')
         setEnteredAddress2('')
@@ -69,12 +66,10 @@ const BasicFormHandle=(callback,validation)=>{
 
 
     };
-
-
     useEffect(() =>{
             if(Object.keys(errors).length===0 && isSubmit){
                 callback();
-                fuelquote();
+                BasicInformationHandler()
             }
         },[errors]
     );
