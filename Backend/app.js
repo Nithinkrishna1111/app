@@ -32,25 +32,40 @@ app.get("/", (req, res) => {
     });
 });
 
-let state=null
 
 app.post('/register',(req,res)=>{
     console.log(req.body)
+    const username=req.body.username
+    console.log(username)
+    // res.json(state)
 
-    res.json({message:"HEllo"})
+    // res.json({message:"HEllo"})
 
 })
 
 app.get('/register',(req,res)=>{
     console.log('api/users called!')
-    res.json(state)
-})
 
-app.get('/login',(req,res)=>{
-    res.send({
-        "nithin":"nithin"
-    })
+    // res.json(state)
 })
+let books=[]
+app.post('/login',(req,res)=>{
+    // res.send({
+    //     "nithin":"nithin"
+    // })
+    const newBook={
+        BookId:req.body.bookId,
+        Title:req.body.bookTitle,
+        Author:req.body.bookAuthor
+    }
+    books.push(newBook)
+    console.log(books)
+    res.redirect('/')
+})
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true
+}));
 
 app.use("/api/v1", api);
 
