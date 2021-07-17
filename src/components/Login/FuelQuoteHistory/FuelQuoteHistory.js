@@ -1,10 +1,29 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import './FuelQuoteHistoryPage.css'
 function FuelQuoteHistory(props){
-    //const[PriceHistory,SetPriceHistory]=useState('')
-    const day=props.Delivery_Date.toLocaleString('en-US',{day:'2-digit'})
-    const month=props.Delivery_Date.toLocaleString('en-US',{month:'long'})
-    const year=props.Delivery_Date.getFullYear()
+    const[PriceHistory,SetPriceHistory]=useState('')
+    const date=new Date(props.Delivery_Date)
+    const day=date.toLocaleString('en-US',{day:'2-digit'})
+    const month=date.toLocaleString('en-US',{month:'long'})
+    const year=date.getFullYear()
+    console.log(props.Delivery_Date)
+
+    const dateFormat = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/;
+
+    function reviver(key, value) {
+        if (typeof value === "string" && dateFormat.test(value)) {
+            return new Date(value);
+        }
+
+        return value;
+
+    }
+
+
+
+
+
+
     return(
         <div>
 
@@ -24,7 +43,9 @@ function FuelQuoteHistory(props){
                 <div className='quote-item__price'>Total Amount Due:  {props.Gallons * props.Suggested_Price_gallon}$</div>
 
 
+
             </div>
+
 
         </div>
         </div>

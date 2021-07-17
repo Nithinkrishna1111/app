@@ -1,24 +1,21 @@
+
+
 const express = require("express");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 require("dotenv").config();
-
 // require("./auth/passport");
 //
 // require("./models/user");
-//
+
 const middlewares = require("./middlewares");
 const api = require("./api");
 
 const app = express();
 
-// const users=[] as {username:string,password:string,password2:string}[]
-
-
-
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(morgan("dev"));
@@ -32,40 +29,77 @@ app.get("/", (req, res) => {
     });
 });
 
+// let lis=[]
+//
+// const trav=(lis,obj)=>{
+//     for(let i in lis.username){
+//         if(lis.username[i]==obj){
+//             response.json("username already exists")
+//         }
+//     }
+//
+// }
+//
+app.post("/login",(req,res)=>{
+        const obj = JSON.parse(JSON.stringify(req.body)); // req.body = [Object: null prototype] { title: 'product' }
+        console.log(obj);
+        // lis.push(obj)
+        // console.log(lis[1])
+        // trav(lis,obj)
+        res.json("nithin")
 
-app.post('/register',(req,res)=>{
-    console.log(req.body)
-    const username=req.body.username
-    console.log(username)
-    // res.json(state)
+        // { title: 'product' }
 
-    // res.json({message:"HEllo"})
+    })
+app.post("/pricequote",(req,res)=>{
+    const obj = JSON.parse(JSON.stringify(req.body)); // req.body = [Object: null prototype] { title: 'product' }
+    console.log(obj);
+    // lis.push(obj)
+    // console.log(lis[1])
+    // trav(lis,obj)
+    res.json("nithin")
+
+    // { title: 'product' }
+
+})
+app.post("/pricequotehistory",(req,res)=>{
+    const obj = JSON.parse(JSON.stringify(req.body)); // req.body = [Object: null prototype] { title: 'product' }
+    console.log(obj);
+    res.json("nithin")
+    // lis.push(obj)
+    // console.log(lis[1])
+    // trav(lis,obj)
+
+    // { title: 'product' }
+
+})
+app.post("/basicinformation",(req,res)=>{
+    const obj = JSON.parse(JSON.stringify(req.body)); // req.body = [Object: null prototype] { title: 'product' }
+    console.log(obj);
+    res.json("nithin")
+    // lis.push(obj)
+    // console.log(lis[1])
+    // trav(lis,obj)
+
+    // { title: 'product' }
+
+})
+app.post("/register",(req,res)=>{
+    const obj = JSON.parse(JSON.stringify(req.body)); // req.body = [Object: null prototype] { title: 'product' }
+    console.log(obj);
+    res.json("nithin")
+    // lis.push(obj)
+    // console.log(lis[1])
+    // trav(lis,obj)
+
+    // { title: 'product' }
 
 })
 
-app.get('/register',(req,res)=>{
-    console.log('api/users called!')
 
-    // res.json(state)
-})
-let books=[]
-app.post('/login',(req,res)=>{
-    // res.send({
-    //     "nithin":"nithin"
-    // })
-    const newBook={
-        BookId:req.body.bookId,
-        Title:req.body.bookTitle,
-        Author:req.body.bookAuthor
-    }
-    books.push(newBook)
-    console.log(books)
-    res.redirect('/')
-})
-app.use(cors({
-    origin: 'http://localhost:3000',
-    credentials: true
-}));
+
+
+
 
 app.use("/api/v1", api);
 

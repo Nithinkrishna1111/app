@@ -27,27 +27,64 @@ const FuelQuoteHistoryPage=()=>{
     //         res.json(users)
     //     })
     // },[]);
+    const quote={
+        Gallons:'',
+        Delivery_Address: '',
+        Delivery_Date:'',
+        Suggested_Price_gallon: ''
+    }
+
+    const dateFormat = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/;
+
+    function reviver(key, value) {
+        if (typeof value === "string" && dateFormat.test(value)) {
+            return new Date(value);
+        }
+
+        return value;
+
+    }
+
+
+
+
+
+
 
     useEffect(()=>{
-        // axios.get('http://localhost:5000/register').then(response=>{
-        //     console.log(response)
-        //     setItems(JSON.stringify(response))
+        fetch('http://127.0.0.1:5000/api/v1/pricequote').then((response)=>{
+            response.json().then((data)=>{
+                console.log(data)
+                console.log(Quotes[0].Delivery_Date)
+                console.log(data.Quotes.Gallons)
+
+
+                quote.Gallons=data.Quotes.Gallons
+                quote.Delivery_Address=data.Quotes.Delivery_Address
+                quote.Delivery_Date=data.Quotes.Delivery_Date
+
+                quote.Suggested_Price_gallon=data.Quotes.Suggested_Price_gallon
+                const[gal,dela,deld,sup]=[data.Quotes.Gallons,data.Quotes.Delivery_Address,data.Quotes.Delivery_Date,data.Quotes.Suggested_Price_gallon]
+                console.log(quote.Suggested_Price_gallon)
+
+            })
+        })
+
+    // .catch((err) => {
+    //         if (err && err.response)
+    //             console.log("Error",err);
+    //         // console.log(values)
+    //
+    //
+    //     })
+        // const fetchItems = async () => {
+        //     const data = await fetch('http://localhost:5000/register');
+        //     const item = await data.json();
+        //     console.log(item)
+        //     setItems(item)
         //     console.log(items)
-        // }).catch((err) => {
-        //     if (err && err.response)
-        //         console.log("Error",err);
-        //     // console.log(values)
-        //
-        //
-        // })
-        const fetchItems = async () => {
-            const data = await fetch('http://localhost:5000/register');
-            const item = await data.json();
-            console.log(item)
-            setItems(item)
-            console.log(items)
-        }
-        fetchItems()
+        // }
+        // fetchItems()
 
         // const componentDidMount=async() => {
         //     // POST request using fetch with async/await
@@ -63,6 +100,8 @@ const FuelQuoteHistoryPage=()=>{
 
 
     },[])
+    // const obj = JSON.parse(quote.Delivery_Date, reviver);
+
     // https://jsonplaceholder.typicode.com/users
 
 
@@ -82,10 +121,10 @@ const FuelQuoteHistoryPage=()=>{
            </div>
             &nbsp;
 
-           <FuelQuoteHistory Gallons={Quotes[0].Gallons} Delivery_Address={items.gallon} Delivery_Date=
-           {Quotes[0].Delivery_Date} Suggested_Price_gallon={items.gallon}></FuelQuoteHistory>
-           <FuelQuoteHistory Gallons={Quotes[1].Gallons} Delivery_Address={Quotes[1].Delivery_Address} Delivery_Date=
-               {Quotes[1].Delivery_Date} Suggested_Price_gallon={Quotes[1].Suggested_Price_gallon}></FuelQuoteHistory>
+           <FuelQuoteHistory Gallons={Quotes[0].Gallons} Delivery_Address={Quotes[0].Delivery_Address} Delivery_Date=
+           {Quotes[0].Delivery_Date} Suggested_Price_gallon={Quotes[0].Suggested_Price_gallon}></FuelQuoteHistory>
+           {/*<FuelQuoteHistory Gallons={quote.Gallons} Delivery_Address={quote.Delivery_Address} Delivery_Date=*/}
+           {/*    {obj} Suggested_Price_gallon={quote.Suggested_Price_gallon}></FuelQuoteHistory>*/}
 
            {/*{*/}
            {/*    items.map(item => (*/}

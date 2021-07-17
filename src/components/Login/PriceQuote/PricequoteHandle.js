@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 import {useHistory} from "react-router-dom";
+import axios from "axios";
+const querystring = require('querystring');
+const http = require('http');
 
 const PricequoteHandle=(callback,validation)=>{
     const [gallons, setGallons] = useState(0);
@@ -32,14 +35,20 @@ const PricequoteHandle=(callback,validation)=>{
     const historyHandle=()=>{
         history.push("/FuelQuoteHistory")
     }
+    const data = querystring.stringify({
+        Gallons:gallons,
+        address:Delivery_Address,
+        Date:date,
+        Price:price
+    });
 
     const refresh = e =>{
         e.preventDefault()
         const values={Gallons:gallons,Delivery_date:date}
-        console.log(values)
-        console.log(isSubmit)
-        console.log(errors)
-
+        console.log(data)
+        axios.post('http://127.0.0.1:5000/pricequote',data).catch(error=>{
+            console.log(error)
+        })
         setErrors(validation(values))
         setsubmit(true);
         setPrice('');

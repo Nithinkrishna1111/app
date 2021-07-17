@@ -1,10 +1,11 @@
 const express = require("express");
-// const User = require("../models/user");
+const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 
 const router = express.Router();
+lis=[]
 
-// router.post("/login", async (req, res) => {
+router.post("/login", async (req, res) => {
 //     const { email, password } = req.body;
 //
 //     const userWithEmail = await User.findOne({ where: { email } }).catch(
@@ -29,10 +30,10 @@ const router = express.Router();
 //     );
 //
 //     res.json({ message: "Welcome Back!", token: jwtToken });
-// });
-router.get("/login", async (req, res) => {
-    console.log(response)
+    const obj = JSON.parse(JSON.stringify(req.body)); // req.body = [Object: null prototype] { title: 'product' }
+    console.log(obj);
+    lis.push(obj)
 
-})
+});
+
 module.exports = router;
-

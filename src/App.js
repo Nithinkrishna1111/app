@@ -2,12 +2,11 @@ import React from "react";
 
 import {useState,useEffect} from "react";
 import Home from './components/Login/Home/Home'
-import quote from './components/Login/PriceQuote/PricequoteForm'
-import PricequoteForm from "./components/Login/PriceQuote/PricequoteForm";
-import Pricequote from "./components/Login/PriceQuote/Pricequote";
-import FuelQuoteHistory from "./components/Login/FuelQuoteHistory/FuelQuoteHistory";
-import fire from './fire'
-import nk from './components/nk'
+// import quote from './components/Login/PriceQuote/PricequoteForm'
+// import PricequoteForm from "./components/Login/PriceQuote/PricequoteForm";
+// import Pricequote from "./components/Login/PriceQuote/Pricequote";
+// import FuelQuoteHistory from "./components/Login/FuelQuoteHistory/FuelQuoteHistory";
+
 
 function App() {
     // const authlistener=()=>{

@@ -22,7 +22,7 @@ const RegisterForm = ({onSubmit}) => {
     //     const items = await data.json();
     //     setItems(items)
     // }
-    const formik= useFormik({initialValues:{username:"",email:"",password:"",password2:""},validateOnBlur:true ,refresh})
+
     return (
         <Router>
             <form>

@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import {useHistory} from "react-router-dom";
+import axios from "axios";
+const querystring = require('querystring');
 
 
 const BasicFormHandle=(callback,validation)=>{
@@ -38,6 +40,14 @@ const BasicFormHandle=(callback,validation)=>{
         e.preventDefault()
         setamount(enteredZipcode*2)
     }
+    const data = querystring.stringify({
+        fullname:enteredFullName,
+        city:enteredCity,
+        address1:enteredAddress1,
+        enteredAddress2:enteredAddress2,
+        state:enteredState
+
+    });
 
 
 
@@ -53,6 +63,9 @@ const BasicFormHandle=(callback,validation)=>{
         e.preventDefault()
         const values={fullname:enteredFullName,address1:enteredAddress1,address2:enteredAddress2,city:enteredCity,state:enteredState,zipcode:enteredZipcode}
         console.log(values)
+        axios.post('http://127.0.0.1:5000/basicinformation',data).catch(error=>{
+            console.log(error)
+        })
         setErrors(validation(values))
         setsubmit(true);
 
