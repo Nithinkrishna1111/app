@@ -1,109 +1,24 @@
+import express from 'express';
+import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
+import cors from 'cors';
 
-
-const express = require("express");
-const morgan = require("morgan");
-const helmet = require("helmet");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-require("dotenv").config();
-// require("./auth/passport");
-//
-// require("./models/user");
-
-const middlewares = require("./middlewares");
-const api = require("./api");
+import postRoutes from './routes/posts.js';
 
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-app.use(morgan("dev"));
-app.use(helmet());
+app.use(bodyParser.json({ limit: '30mb', extended: true }))
+app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 app.use(cors());
-app.use(express.json());
 
-app.get("/", (req, res) => {
-    res.json({
-        message: "🦄🌈✨👋🌎🌍🌏✨🌈🦄",
-    });
-});
+app.use('/posts', postRoutes);
 
-// let lis=[]
-//
-// const trav=(lis,obj)=>{
-//     for(let i in lis.username){
-//         if(lis.username[i]==obj){
-//             response.json("username already exists")
-//         }
-//     }
-//
-// }
-//
-app.post("/login",(req,res)=>{
-        const obj = JSON.parse(JSON.stringify(req.body)); // req.body = [Object: null prototype] { title: 'product' }
-        console.log(obj);
-        // lis.push(obj)
-        // console.log(lis[1])
-        // trav(lis,obj)
-        res.json("nithin")
+const CONNECTION_URL = 'mongodb+srv://Nithin:wVcJFx355bxeXQx@cluster0.jvpuh.mongodb.net/software_design?retryWrites=true&w=majority';
 
-        // { title: 'product' }
+const PORT = process.env.PORT|| 5000;
 
-    })
-app.post("/pricequote",(req,res)=>{
-    const obj = JSON.parse(JSON.stringify(req.body)); // req.body = [Object: null prototype] { title: 'product' }
-    console.log(obj);
-    // lis.push(obj)
-    // console.log(lis[1])
-    // trav(lis,obj)
-    res.json("nithin")
+mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
+    .catch((error) => console.log(`${error} did not connect`));
 
-    // { title: 'product' }
-
-})
-app.post("/pricequotehistory",(req,res)=>{
-    const obj = JSON.parse(JSON.stringify(req.body)); // req.body = [Object: null prototype] { title: 'product' }
-    console.log(obj);
-    res.json("nithin")
-    // lis.push(obj)
-    // console.log(lis[1])
-    // trav(lis,obj)
-
-    // { title: 'product' }
-
-})
-app.post("/basicinformation",(req,res)=>{
-    const obj = JSON.parse(JSON.stringify(req.body)); // req.body = [Object: null prototype] { title: 'product' }
-    console.log(obj);
-    res.json("nithin")
-    // lis.push(obj)
-    // console.log(lis[1])
-    // trav(lis,obj)
-
-    // { title: 'product' }
-
-})
-app.post("/register",(req,res)=>{
-    const obj = JSON.parse(JSON.stringify(req.body)); // req.body = [Object: null prototype] { title: 'product' }
-    console.log(obj);
-    res.json("nithin")
-    // lis.push(obj)
-    // console.log(lis[1])
-    // trav(lis,obj)
-
-    // { title: 'product' }
-
-})
-
-
-
-
-
-
-app.use("/api/v1", api);
-
-app.use(middlewares.notFound);
-app.use(middlewares.errorHandler);
-
-module.exports = app;
+// mongoose.set('useFindAndModify', false);

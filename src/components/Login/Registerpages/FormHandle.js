@@ -1,22 +1,26 @@
 import {useState, useEffect} from 'react';
 import axios from "axios";
 
-
+import {useDispatch} from "react-redux";
 
 import {useHistory} from "react-router-dom";
+import {createUser} from "../../../actions/login";
 const querystring = require('querystring');
 const http = require('http');
 
 const FormHandle = (callback, validation) => {
+    const [postData,setPostData]=useState({username:'',email:'',password:''})
 
     const [enteredUsername, setEnteredUsername] = useState('')
     const userChangeHandler = (e) => {
         setEnteredUsername(e.target.value)
+        setPostData({...postData,username: e.target.value})
     }
 
     const [enteredpassword, setEnteredPassword] = useState('')
     const pwdChangeHandler = (e) => {
         setEnteredPassword(e.target.value)
+        setPostData({...postData,password: e.target.value})
     }
 
     const [enteredPassword2, setEnteredPassword2] = useState('')
@@ -27,12 +31,15 @@ const FormHandle = (callback, validation) => {
     const [enteredEmail, setEnteredEmail] = useState('')
     const emailChangeHandler = (e) => {
         setEnteredEmail(e.target.value)
+        setPostData({...postData,email: e.target.value})
     }
 
 
+    const dispatch = useDispatch()
+
     const [errors, setErrors] = useState({})
     const [isSubmit, setsubmit] = useState(false);
-    const[mesage,setmesage]=useState(null)
+
 
     const values = {
         username: enteredUsername,
@@ -46,11 +53,11 @@ const FormHandle = (callback, validation) => {
     const BasicInformationHandle = () => {
         history.push("/BasicInformation")
     }
-    const data = querystring.stringify({
-        username: enteredUsername,
-        email:enteredEmail,
-        password: enteredpassword
-    });
+    // const data = querystring.stringify({
+    //     username: enteredUsername,
+    //     email:enteredEmail,
+    //     password: enteredpassword
+    // });
     //
     // const options = {
     //     host: '127.0.0.1',
@@ -73,10 +80,11 @@ const FormHandle = (callback, validation) => {
         // });
         // req.write(data);
         // req.end();
-        axios.post('http://127.0.0.1:5000/register',data).catch(error=>{
-            console.log(error)
-        })
-        console.log(data)
+        dispatch(createUser(postData))
+        // axios.post('http://127.0.0.1:4000/login',data).catch(error=>{
+        //     console.log(error)
+        // })
+        // console.log(data)
 
         setErrors(validation(values))
         setsubmit(true)
