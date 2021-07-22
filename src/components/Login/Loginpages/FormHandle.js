@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from "axios";
 import {useHistory} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {createPost} from "../../../../Backend/controllers/posts";
 
 const querystring = require('querystring');
 const http = require('http');
@@ -69,6 +71,7 @@ const FormHandle=(callback,validation,setCurrentId)=>{
         setErrors(validation(values))
         setsubmit(true)
         if(currentId)
+            dispatch()
 
 
         // then(res=>{
