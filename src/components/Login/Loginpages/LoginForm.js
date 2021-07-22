@@ -9,10 +9,10 @@ import validation from './Validation-data'
 import {useState,useEffect} from "react";
 
 
-const LoginForm =({ onSubmit }) =>
+const LoginForm =({ onSubmit,setCurrentId }) =>
 {
     let history =useHistory();
-    const [refresh,errors,userChangeHandler,pwdChangeHandler,enteredpassword,enteredUsername]=FormHandle(onSubmit,validation)
+    const [refresh,errors,userChangeHandler,pwdChangeHandler,enteredpassword,enteredUsername]=FormHandle(onSubmit,validation,setCurrentId)
     const signup=()=>{
         history.push("/register")
     }

@@ -27,4 +27,28 @@ export const createPost = async (req, res) => {
         res.status(409).json({ message: error.message });
     }
 }
+export const updatePost = async (req, res) => {
+    const { id } = req.params;
+    const { fullname, address, address2, city, state, zipcode } = req.body;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`user doesnt exists: ${id}`);
+
+    const updatedPost = { fullname, address, address2, city, state, zipcode , _id: id };
+
+    await PostMessage.findByIdAndUpdate(id, updatedPost, { new: true });
+
+    res.json(updatedPost);
+}
+
+export const getPost = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const post = await PostMessage.findById(id);
+
+        res.status(200).json(post);
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+}
 export default router;

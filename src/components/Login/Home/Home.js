@@ -24,8 +24,8 @@ const Home = () =>{
                 <Route path="/" exact component={LoginPage}/>
                 <Route path="/register" exact component={Register}/>
                 <Route path="/BasicInformation" exact component={BasicInformationPage}/>
-                <Route path="/FuelQuoteHistory" exact component={FuelQuoteHistoryPage}/>
-                <Route path="/PriceQuote" exact component={Pricequote}/>
+                <Route path="/FuelQuoteHistory/:id" exact component={FuelQuoteHistoryPage}/>
+                <Route path="/PriceQuote/:id" exact component={Pricequote}/>
             </Switch>
         </Router>
     );

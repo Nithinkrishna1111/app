@@ -2,6 +2,7 @@ import './FuelQuoteHistoryPage.css'
 
 import FuelQuoteHistory from "./FuelQuoteHistory";
 import {useSelector} from "react-redux";
+import { Grid, CircularProgress } from '@material-ui/core';
 import {useEffect,useState} from "react";
 import axios from "axios";
 
@@ -12,21 +13,32 @@ const FuelQuoteHistoryPage=()=>{
         ,Suggested_Price_gallon:4},
         {Gallons:2,Delivery_Address:'3148 Holyhall',Delivery_Date:new Date(2021,2,28)
             ,Suggested_Price_gallon:7}]
-
     const users=useSelector((state) => state.users);
     console.log(users)
 
+
+
     return(
-        <div >
+        <div>
             <div className='bg'>
                 <h1 className='Title'>Price Quote History</h1>
+                &nbsp;
             </div>
-            &nbsp;
-
-            <FuelQuoteHistory Gallons={Quotes[0].Gallons} Delivery_Address={Quotes[0].Delivery_Address} Delivery_Date=
-                {Quotes[0].Delivery_Date} Suggested_Price_gallon={Quotes[0].Suggested_Price_gallon}></FuelQuoteHistory>
-
+            <div>
+                {
+                    !users.length ? <CircularProgress /> : (
+                        <Grid >
+                            {users.map((post) => (
+                                <Grid key={post._id} >
+                                    <FuelQuoteHistory post={post}  />
+                                </Grid>
+                            ))}
+                        </Grid>
+                    )
+                }
+            </div>
         </div>
+
 
     )
 }

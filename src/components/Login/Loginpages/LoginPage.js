@@ -4,6 +4,7 @@ import LoginForm from "./LoginForm";
 import Pricequote from "../PriceQuote/Pricequote";
 const LoginPage =()=>{
     const[isSubmit,setSubmit]=useState(false);
+    const [currentId,setCurrentId]=useState(null)
 
     function onSubmit(){
         setSubmit(true);
@@ -14,7 +15,7 @@ const LoginPage =()=>{
         <div className='login-page'>
             <div className='login'>
                 {(!isSubmit?(<LoginForm onSubmit={
-                    onSubmit}/>):<Pricequote/>)}
+                    onSubmit} setCurrentId={setCurrentId}/>):<Pricequote/>)}
             </div>
 
         </div>

@@ -5,7 +5,7 @@ import {useHistory} from "react-router-dom";
 const querystring = require('querystring');
 const http = require('http');
 
-const FormHandle=(callback,validation)=>{
+const FormHandle=(callback,validation,setCurrentId)=>{
 
     const[enteredUsername,setEnteredUsername]=useState('')
     const userChangeHandler=(e) =>{
@@ -68,9 +68,7 @@ const FormHandle=(callback,validation)=>{
         console.log(values)
         setErrors(validation(values))
         setsubmit(true)
-        axios.post('http://127.0.0.1:5000/login',data).catch(error=>{
-            console.log(error)
-        })
+        if(currentId)
 
 
         // then(res=>{
