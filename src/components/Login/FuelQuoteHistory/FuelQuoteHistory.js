@@ -55,9 +55,9 @@ function FuelQuoteHistory({post}){
             {/*</div>*/}
             <div>
 
-                <h1>{post.username}</h1>
-                <h1>{post.password}</h1>
-                <h1>{post.email}</h1>
+                <h1>{post.date}</h1>
+                {/*<h1>{post.password}</h1>*/}
+                {/*<h1>{post.email}</h1>*/}
             </div>
 
             {/*<div>*/}

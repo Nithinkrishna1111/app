@@ -25,7 +25,7 @@ const Pricequote = () => {
             <div className='price-page'>
                 <div className='price'>
                     {(!isSubmit ? (<PricequoteForm onSubmit={
-                        onSubmit } id={id} />) : <FuelQuoteHistoryPage/>)}
+                        onSubmit } id={id} />) : <FuelQuoteHistoryPage />)}
                 </div>
                 &nbsp;
 
