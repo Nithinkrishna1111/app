@@ -32,6 +32,18 @@
 
 }
 
+.loginBtn p{
+    color: darkred;
+    text-decoration-style: solid;
+    opacity: 100;
+
+
+
+
+
+}
+
+
 
 .LoginForm-Signup{
     text-align: center;

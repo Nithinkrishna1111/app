@@ -1,75 +1,24 @@
-const express = require("express");
-const morgan = require("morgan");
-const helmet = require("helmet");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-require("dotenv").config();
+import express from 'express';
+import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
+import cors from 'cors';
 
-// require("./auth/passport");
-//
-// require("./models/user");
-//
-const middlewares = require("./middlewares");
-const api = require("./api");
+import postRoutes from './routes/posts.js';
 
 const app = express();
 
-// const users=[] as {username:string,password:string,password2:string}[]
-
-
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
-app.use(morgan("dev"));
-app.use(helmet());
+app.use(bodyParser.json({ limit: '30mb', extended: true }))
+app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 app.use(cors());
-app.use(express.json());
 
-app.get("/", (req, res) => {
-    res.json({
-        message: "🦄🌈✨👋🌎🌍🌏✨🌈🦄",
-    });
-});
+app.use('/posts', postRoutes);
 
+const CONNECTION_URL = 'mongodb+srv://Nithin:wVcJFx355bxeXQx@cluster0.jvpuh.mongodb.net/software_design?retryWrites=true&w=majority';
 
-app.post('/register',(req,res)=>{
-    console.log(req.body)
-    const username=req.body.username
-    console.log(username)
-    // res.json(state)
+const PORT = process.env.PORT|| 5000;
 
-    // res.json({message:"HEllo"})
+mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true ,useFindAndModify:false})
+    .then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
+    .catch((error) => console.log(`${error} did not connect`));
 
-})
-
-app.get('/register',(req,res)=>{
-    console.log('api/users called!')
-
-    // res.json(state)
-})
-let books=[]
-app.post('/login',(req,res)=>{
-    // res.send({
-    //     "nithin":"nithin"
-    // })
-    const newBook={
-        BookId:req.body.bookId,
-        Title:req.body.bookTitle,
-        Author:req.body.bookAuthor
-    }
-    books.push(newBook)
-    console.log(books)
-    res.redirect('/')
-})
-app.use(cors({
-    origin: 'http://localhost:3000',
-    credentials: true
-}));
-
-app.use("/api/v1", api);
-
-app.use(middlewares.notFound);
-app.use(middlewares.errorHandler);
-
-module.exports = app;
+// mongoose.set('useFindAndModify', false);

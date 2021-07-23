@@ -5,8 +5,8 @@ import validation from './PricequoteValidation'
 import PricequoteHandle from './PricequoteHandle'
 import'./PricequoteForm.css'
 import {BrowserRouter as Router} from "react-router-dom";
-const PricequoteForm=( {onSubmit} )=> {
-    const[refresh,errors,gallons,Delivery_Address,date,price,gallonChangeHandler,AddressChangeHandler,dateChangeHandler,priceChangeHandler]=PricequoteHandle(onSubmit,validation)
+const PricequoteForm=( {onSubmit,id} )=> {
+    const[refresh,errors,gallons,Delivery_Address,date,price,gallonChangeHandler,AddressChangeHandler,dateChangeHandler,priceChangeHandler]=PricequoteHandle(onSubmit,validation,id)
     const qprice=5
     return (
         <Router>

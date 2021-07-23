@@ -3,6 +3,7 @@ import {useState} from "react";
 import PricequoteForm from "./PricequoteForm";
 import FuelQuoteHistoryPage from "../FuelQuoteHistory/FuelQuoteHistoryPage";
 import './Pricequote.css'
+import {useParams} from 'react-router-dom'
 import Header from "../layout/Header";
 
 
@@ -13,6 +14,9 @@ const Pricequote = () => {
     function onSubmit() {
         setSubmit(true);
     }
+    const {id}=useParams()
+    console.log(id,"id in pricequote")
+
 
 
     return (
@@ -21,7 +25,7 @@ const Pricequote = () => {
             <div className='price-page'>
                 <div className='price'>
                     {(!isSubmit ? (<PricequoteForm onSubmit={
-                        onSubmit}/>) : <FuelQuoteHistoryPage/>)}
+                        onSubmit } id={id} />) : <FuelQuoteHistoryPage/>)}
                 </div>
                 &nbsp;
 

@@ -1,8 +1,13 @@
 import { useState, useEffect } from 'react';
 import axios from "axios";
 import {useHistory} from "react-router-dom";
-import fire from "../../../fire";
-const FormHandle=(callback,validation)=>{
+import {useDispatch,useSelector} from "react-redux";
+import {updateUser,createUser} from "../../../actions/login";
+
+const querystring = require('querystring');
+const http = require('http');
+
+const FormHandle=(callback,validation,onId,currentId)=>{
 
     const[enteredUsername,setEnteredUsername]=useState('')
     const userChangeHandler=(e) =>{
@@ -27,44 +32,85 @@ const FormHandle=(callback,validation)=>{
 
     const [errors,setErrors]=useState({})
     const [isSubmit,setsubmit]=useState(false);
-    const[data,setData]=useState({
-        name:enteredUsername
-    })
 
 
     const values={username:enteredUsername,password:enteredpassword,email:enteredEmail,password2:enteredPassword2}
 
+    // const users=useSelector((state) => currentId ? state.users.find((p)=>p._id===currentId):null);
 
+    const users=useSelector((state) => !currentId ? state.users.find((p)=>p.username===enteredUsername):null);
+    // console.log(users)
+    const dispatch=useDispatch()
     let history =useHistory();
-    const fuelquotehistory=()=>{
-        history.push("/PriceQuote")
-    }
+
+    const data = querystring.stringify({
+        username: enteredUsername,
+        password: enteredpassword
+    });
+
+    const options = {
+        host: '127.0.0.1',
+        port:5000,
+        path: '/login',
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Length': data.length
+        }
+    };
     const refresh = e =>{
         e.preventDefault()
 
         console.log(values)
-        setErrors(validation(values))
+
+        // console.log(users._id)
+        if (typeof users !== 'undefined'){
+            console.log(users._id,"above on id")
+            onId(users._id)
+
+            console.log((typeof users._id))
+            const myJSON = JSON.stringify(users._id);
+            console.log((typeof myJSON))
+
+        }
+        else {
+            onId(null)
+        }
+        // console.log(currentId)
+
+
+
+
+        setErrors(validation(values,users))
+
         setsubmit(true)
 
-        // axios.post('http://localhost:8080/',{name:data.name}).then(res=>{
-        //     console.log(res.data).catch(error=>{
-        //         console.log(error)
-        //     })
-        // })
-        // fire.auth().signInWithEmailAndPassword(enteredUsername,enteredpassword).then((u)=>{console.log(u)}).catch((err)=>{
-        //     console.log(err)
-        // })
         setEnteredUsername('')
         setEnteredPassword('')
         setEnteredPassword2('')
         setEnteredEmail('')
 
     };
+    const fuelquotehistory=()=>{
+        history.push(`/PriceQuote/${currentId}`)
+    }
 
     useEffect(() =>{
         if(Object.keys(errors).length===0 && isSubmit){
+
+
             callback();
+
+
+            console.log(currentId)
+
+
+
+
+
+            // dispatch({type:'AUTH',data:{values}})
             fuelquotehistory()
+
 
             }
     },[errors]

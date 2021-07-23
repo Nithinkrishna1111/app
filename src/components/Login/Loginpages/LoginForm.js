@@ -9,10 +9,10 @@ import validation from './Validation-data'
 import {useState,useEffect} from "react";
 
 
-const LoginForm =({ onSubmit }) =>
+const LoginForm =({ onSubmit,onId,currentId}) =>
 {
     let history =useHistory();
-    const [refresh,errors,userChangeHandler,pwdChangeHandler,enteredpassword,enteredUsername]=FormHandle(onSubmit,validation)
+    const [refresh,errors,userChangeHandler,pwdChangeHandler,enteredpassword,enteredUsername]=FormHandle(onSubmit,validation,onId,currentId)
     const signup=()=>{
         history.push("/register")
     }
@@ -62,10 +62,14 @@ const LoginForm =({ onSubmit }) =>
                     &nbsp;
                     <div className='loginBtn' onClick={refresh}>
                         <button type="submit" >Login</button>
+                        {errors.userExists && <p>*{errors.userExists}</p>}
                     </div>
+
+
                     &nbsp;&nbsp;&nbsp;
                     <div className='loginBtn' onClick={signup}>
                         <button type="submit" >Signup</button>
+
                     </div>
                 </div>
             </form>
