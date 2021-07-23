@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
 import {useHistory} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {updateUser} from "../../../actions/login";
 import axios from "axios";
 const querystring = require('querystring');
+
 const http = require('http');
 
-const PricequoteHandle=(callback,validation)=>{
+const PricequoteHandle=(callback,validation,id)=>{
     const [gallons, setGallons] = useState(0);
     const gallonChangeHandler=(e) =>{
         setGallons(e.target.value)
@@ -33,7 +36,7 @@ const PricequoteHandle=(callback,validation)=>{
 
     let history =useHistory();
     const historyHandle=()=>{
-        history.push("/FuelQuoteHistory")
+        history.push(`/FuelQuoteHistory/${id}`)
     }
     const data = querystring.stringify({
         Gallons:gallons,
@@ -41,14 +44,15 @@ const PricequoteHandle=(callback,validation)=>{
         Date:date,
         Price:price
     });
-
+    const dispatch=useDispatch()
     const refresh = e =>{
         e.preventDefault()
-        const values={Gallons:gallons,Delivery_date:date}
+        const values={gallonsRequired:gallons,date:date}
         console.log(data)
-        axios.post('http://127.0.0.1:5000/pricequote',data).catch(error=>{
-            console.log(error)
-        })
+        console.log(id,"id in priceqyote handle ")
+
+        dispatch(updateUser(id,values))
+
         setErrors(validation(values))
         setsubmit(true);
         setPrice('');

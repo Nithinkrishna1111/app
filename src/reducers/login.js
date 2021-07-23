@@ -4,6 +4,8 @@ export default (users=[],action)=>{
             return action.payload;
         case 'CREATE':
             return [...users,action.payload]
+        case 'UPDATE':
+            return users.map((post) => (post._id === action.payload._id ? action.payload : post));
         default:
             return users
 

@@ -15,9 +15,9 @@ export const getPosts = async (req, res) => {
     }
 }
 export const createPost = async (req, res) => {
-    const { username,password,email} = req.body;
+    const { username,password,email,fullname, address, address2, city, state, zipcode,Gallons,Delivery_date} = req.body;
 
-    const newPostMessage = new PostMessage({ username,password,email})
+    const newPostMessage = new PostMessage({ username,password,email,fullname, address, address2, city, state, zipcode,Gallons,Delivery_date})
 
     try {
         await newPostMessage.save();
@@ -29,13 +29,15 @@ export const createPost = async (req, res) => {
 }
 export const updatePost = async (req, res) => {
     const { id } = req.params;
-    const { fullname, address, address2, city, state, zipcode } = req.body;
+    const { fullname,address, address2, city, state, zipcode ,gallonsRequired,date } = req.body;
 
+// , address, address2, city, state, zipcode,Gallons,Delivery_date
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`user doesnt exists: ${id}`);
 
-    const updatedPost = { fullname, address, address2, city, state, zipcode , _id: id };
+    const updatedPost = { fullname, address, address2, city, state, zipcode ,gallonsRequired,date, _id: id };
+//
 
-    await PostMessage.findByIdAndUpdate(id, updatedPost, { new: true });
+    await PostMessage.findByIdAndUpdate(id, updatedPost, { new: true ,runValidators:true});
 
     res.json(updatedPost);
 }

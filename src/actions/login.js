@@ -23,3 +23,13 @@ export const createUser=(users)=>async(dispatch)=>{
 
     }
 }
+
+export const updateUser = (id, users) => async (dispatch) => {
+    try {
+        const { data } = await api.updatePost(id, users);
+
+        dispatch({ type: 'UPDATE', payload: data });
+    } catch (error) {
+        console.log(error.message);
+    }
+};
