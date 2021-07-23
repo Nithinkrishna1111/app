@@ -6,6 +6,7 @@ export const getUsers=()=>async(dispatch)=>{
     try{
         const {data }=await  api.fetchLogin();
         dispatch({type:'FETCH_ALL',payload:data})
+
     }catch (error){
         console.log(error.message)
     }
@@ -33,3 +34,13 @@ export const updateUser = (id, users) => async (dispatch) => {
         console.log(error.message);
     }
 };
+
+export const createUserQuote=(users)=>async(dispatch)=>{
+    try{
+        const{data}=await api.createLoginQuote(users);
+        dispatch({type:'CREATE',payload:data})
+    } catch (error){
+        console.log(error)
+
+    }
+}

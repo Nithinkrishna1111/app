@@ -16,7 +16,7 @@ const postSchema = mongoose.Schema({
 
     },
     fullname:String,
-    address:String,
+    address1:String,
     address2:String,
     city:String,
     state:String,

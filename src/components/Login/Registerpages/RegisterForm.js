@@ -8,9 +8,9 @@ import validation from './Validation-register'
 import {useFormik} from "formik";
 
 
-const RegisterForm = ({onSubmit}) => {
+const RegisterForm = ({onSubmit,currentId,onId}) => {
 
-    const [refresh, errors, userChangeHandler, pwdChangeHandler, enteredpassword, enteredUsername, emailChangeHandler, pwdChangeHandler2, enteredEmail, enteredPassword2] = FormHandle(onSubmit, validation)
+    const [refresh, errors, userChangeHandler, pwdChangeHandler, enteredpassword, enteredUsername, emailChangeHandler, pwdChangeHandler2, enteredEmail, enteredPassword2] = FormHandle(onSubmit, validation,currentId,onId)
     // const [initialState, setInitialState] = useState([])
     // useEffect(()=>{
     //     fetchItems();

@@ -8,7 +8,7 @@ import {createUser,updateUser} from "../../../actions/login"
 const querystring = require('querystring');
 const http = require('http');
 
-const FormHandle = (callback, validation) => {
+const FormHandle = (callback, validation,currentId,onId) => {
     const [postData,setPostData]=useState({username:'',email:'',password:''})
 
     const [enteredUsername, setEnteredUsername] = useState('')
@@ -51,7 +51,7 @@ const FormHandle = (callback, validation) => {
 
     let history = useHistory();
     const BasicInformationHandle = () => {
-        history.push("/BasicInformation")
+        history.push("/")
     }
     // const data = querystring.stringify({
     //     username: enteredUsername,

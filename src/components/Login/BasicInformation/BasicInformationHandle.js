@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import {useHistory} from "react-router-dom";
 import axios from "axios";
+import {useDispatch} from "react-redux";
+import {updateUser} from "../../../actions/login";
 const querystring = require('querystring');
 
 
-const BasicFormHandle=(callback,validation)=>{
+const BasicFormHandle=(callback,validation,id)=>{
     const[enteredFullName,setEnteredFullName]=useState('')
     const FullNameChangeHandler=(e) =>{
         setEnteredFullName(e.target.value)
@@ -57,15 +59,14 @@ const BasicFormHandle=(callback,validation)=>{
 
     let history =useHistory();
     const BasicInformationHandler=()=>{
-        history.push("/BasicInformation")
+        history.push(`/PriceQuote/${id}`)
     }
+    const dispatch=useDispatch()
     const refresh = e =>{
         e.preventDefault()
         const values={fullname:enteredFullName,address1:enteredAddress1,address2:enteredAddress2,city:enteredCity,state:enteredState,zipcode:enteredZipcode}
         console.log(values)
-        axios.post('http://127.0.0.1:5000/basicinformation',data).catch(error=>{
-            console.log(error)
-        })
+        dispatch(updateUser(id,values))
         setErrors(validation(values))
         setsubmit(true);
 

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import {useHistory} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {updateUser} from "../../../actions/login";
+import {updateUser,createUserQuote} from "../../../actions/login";
 import axios from "axios";
 const querystring = require('querystring');
 
@@ -38,20 +38,16 @@ const PricequoteHandle=(callback,validation,id)=>{
     const historyHandle=()=>{
         history.push(`/FuelQuoteHistory/${id}`)
     }
-    const data = querystring.stringify({
-        Gallons:gallons,
-        address:Delivery_Address,
-        Date:date,
-        Price:price
-    });
+
     const dispatch=useDispatch()
     const refresh = e =>{
         e.preventDefault()
         const values={gallonsRequired:gallons,date:date}
-        console.log(data)
+        const vals={id:id,gallonsRequired:gallons,date:date}
+
         console.log(id,"id in priceqyote handle ")
 
-        dispatch(updateUser(id,values))
+        dispatch(createUserQuote(vals))
 
         setErrors(validation(values))
         setsubmit(true);

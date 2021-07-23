@@ -58,6 +58,7 @@ const FormHandle=(callback,validation,onId,currentId)=>{
             'Content-Length': data.length
         }
     };
+    const [uname,setUname]=useState(null)
     const refresh = e =>{
         e.preventDefault()
 
@@ -67,7 +68,8 @@ const FormHandle=(callback,validation,onId,currentId)=>{
         if (typeof users !== 'undefined'){
             console.log(users._id,"above on id")
             onId(users._id)
-
+            setUname(users.fullname)
+            console.log(users)
             console.log((typeof users._id))
             const myJSON = JSON.stringify(users._id);
             console.log((typeof myJSON))
@@ -92,8 +94,14 @@ const FormHandle=(callback,validation,onId,currentId)=>{
 
     };
     const fuelquotehistory=()=>{
-        history.push(`/PriceQuote/${currentId}`)
-    }
+        if(uname!=null){
+            console.log(uname,"if")
+            history.push(`/PriceQuote/${currentId}`)}
+        else{
+            console.log(uname,"else")
+            history.push(`/BasicInformation/${currentId}`)}
+        }
+
 
     useEffect(() =>{
         if(Object.keys(errors).length===0 && isSubmit){

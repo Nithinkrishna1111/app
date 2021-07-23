@@ -8,10 +8,10 @@ import {useHistory} from "react-router-dom"
 import validation from './Validation-basic'
 
 
-const BasicInformationForm =({ onSubmit }) =>
+const BasicInformationForm =({ onSubmit,id }) =>
 {
     let history =useHistory();
-    const [refresh,errors,FullNameChangeHandler,Address1ChangeHandler,Address2ChangeHandler,CityChangeHandler,StateChangeHandler,ZipcodeChangeHandler,enteredFullName,enteredAddress1,enteredAddress2,enteredCity,enteredState,enteredZipcode,amount,PriceHandler]=BasicFormHandle(onSubmit,validation)
+    const [refresh,errors,FullNameChangeHandler,Address1ChangeHandler,Address2ChangeHandler,CityChangeHandler,StateChangeHandler,ZipcodeChangeHandler,enteredFullName,enteredAddress1,enteredAddress2,enteredCity,enteredState,enteredZipcode,amount,PriceHandler]=BasicFormHandle(onSubmit,validation,id)
     const signup=()=>{
         history.push("/register")
     }

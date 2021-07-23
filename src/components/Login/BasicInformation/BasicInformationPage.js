@@ -2,8 +2,11 @@ import {useState} from "react";
 import BasicInformationForm from "./BasicInformationForm";
 import Pricequote from "../PriceQuote/Pricequote";
 import './BasicInformationPage.css'
+import {useParams} from "react-router-dom";
 const BasicInformationPage =()=>{
     const[isSubmit,setSubmit]=useState(false);
+    const {id}=useParams()
+
 
     function onSubmit(){
         setSubmit(true);
@@ -16,7 +19,7 @@ const BasicInformationPage =()=>{
             <div className='basic'>
 
                 {(!isSubmit?(<BasicInformationForm onSubmit={
-                    onSubmit}/>):<Pricequote/>)}
+                    onSubmit} id={id}/>):<Pricequote/>)}
             </div>
 
         </div>
