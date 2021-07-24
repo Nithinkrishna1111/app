@@ -6,6 +6,9 @@ export default (users=[],action)=>{
             return [...users,action.payload]
         case 'UPDATE':
             return users.map((post) => (post._id === action.payload._id ? action.payload : post));
+        case 'VALIDATELOGIN'  :
+            return [...users,action.payload]
+
         default:
             return users
 

@@ -11,11 +11,32 @@ export const getPosts = async (req, res) => {
     try {
         const postMessages = await PostMessage.find();
 
+
         res.status(200).json(postMessages);
     } catch (error) {
         res.status(404).json({ message: error.message });
     }
 }
+
+export const getPostss = async (req, res) => {
+    res.send(req.user)
+}
+
+export const logout=async(req,res)=>{
+    try{
+        req.user.tokens(req.user.tokens.filter((token)=>{
+            return token.token !== req.token
+        }))
+        await req.user.save()
+        res.send()
+    }catch(e){
+        res.status(500).send()
+    }
+
+}
+
+
+
 export const createPost = async (req, res) => {
     const { username,password,email,fullname, address, address2, city, state, zipcode} = req.body;
 
@@ -32,6 +53,7 @@ export const createPost = async (req, res) => {
         res.status(409).json({ message: error.message });
     }
 }
+
 export const updatePost = async (req, res) => {
     const { id } = req.params;
 //     const { fullname,address1, address2, city, state, zipcode  } = req.body;
@@ -71,6 +93,7 @@ export const updatePost = async (req, res) => {
 export const login=async(req,res)=>{
     try {
         const user = await PostMessage.findByCredentials(req.body.username, req.body.password)
+        console.log(user)
         const token = await user.generateAuthToken()
         res.send({user,token})
     } catch (e) {
@@ -80,6 +103,7 @@ export const login=async(req,res)=>{
 
 
 }
+
 
 
 

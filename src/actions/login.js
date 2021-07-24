@@ -25,6 +25,16 @@ export const createUser=(users)=>async(dispatch)=>{
     }
 }
 
+export const validateUser=(users)=>async(dispatch)=>{
+    try{
+        const{data}=await api.validateLogin(users);
+        dispatch({type:'VALIDATELOGIN',payload:data})
+    } catch (error){
+        console.log(error)
+
+    }
+}
+
 export const updateUser = (id, users) => async (dispatch) => {
     try {
         const { data } = await api.updatePost(id, users);
