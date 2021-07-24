@@ -107,6 +107,9 @@ export const updatePost2 = async (req, res) => {
     }
 }
 
+
+
+
 export const getPosts2 = async (req, res) => {
     try {
         const postQuotes = await postquote.find();
