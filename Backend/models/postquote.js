@@ -8,6 +8,7 @@ const postSchema2 = mongoose.Schema({
     id:String,
     gallonsRequired:Number,
     date:Date,
+    address:String
 
 })
 

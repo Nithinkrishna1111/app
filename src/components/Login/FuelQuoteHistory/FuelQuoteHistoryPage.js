@@ -9,14 +9,28 @@ import {useParams} from "react-router-dom";
 
 const FuelQuoteHistoryPage=()=>{
     const {id}=useParams()
+    // let currentId=null
 
     const Quotes=[{Gallons:3,Delivery_Address:'8450 cambridge st',Delivery_Date:new Date(2021,2,28)
         ,Suggested_Price_gallon:4},
         {Gallons:2,Delivery_Address:'3148 Holyhall',Delivery_Date:new Date(2021,2,28)
             ,Suggested_Price_gallon:7}]
-    // const users=useSelector((state) => state.users);
-    const users=useSelector((state) =>  state.users.find((p)=>p.id===id));
-    console.log(users)
+    // const users=useSelector((state) => state.users.find((p)=>p._id===idd));
+    // const quotes=useSelector((state) => state.quotes.find((p)=>p.id===idd));
+// .find((p)=>p.id===id)
+
+    // const quotes=useSelector((state) => state.quotes);
+    // console.log(quotes)
+
+    // console.log(typeof id)
+    const quotes=useSelector((state) =>  state.quotes)
+
+    console.log(quotes)
+    console.log(id)
+    let filteredQuotes=quotes.filter(obj=>obj.id==id)
+    console.log(filteredQuotes)
+
+
 
 
 
@@ -28,11 +42,11 @@ const FuelQuoteHistoryPage=()=>{
             </div>
             <div>
                 {
-                    !users.length ? <CircularProgress /> : (
+                    !quotes.length ? <CircularProgress /> : (
                         <Grid >
-                            {users.map((post) => (
+                            {filteredQuotes.map((post) => (
                                 <Grid key={post._id} >
-                                    <FuelQuoteHistory post={post}  />
+                                    <FuelQuoteHistory post={post} />
                                 </Grid>
                             ))}
                         </Grid>
@@ -40,6 +54,7 @@ const FuelQuoteHistoryPage=()=>{
                 }
             </div>
         </div>
+
 
 
     )

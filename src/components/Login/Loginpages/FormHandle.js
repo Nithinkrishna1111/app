@@ -91,6 +91,7 @@ const FormHandle=(callback,validation,onId,currentId)=>{
         setEnteredPassword('')
         setEnteredPassword2('')
         setEnteredEmail('')
+        console.log(errors)
 
     };
     const fuelquotehistory=()=>{
