@@ -9,6 +9,7 @@ export const getUsers=()=>async(dispatch)=>{
 
     }catch (error){
         console.log(error.message)
+        dispatch({type:'ERROR',error:error})
     }
 
 

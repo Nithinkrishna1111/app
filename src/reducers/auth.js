@@ -1,11 +1,11 @@
-const authReducer=(state={authData:null},action)=>{
+const authReducer=(auth=[],action)=>{
     switch (action.type){
         case 'AUTH':
             console.log(action?.data)
-            return state;
+            return [...auth,action.payload]
 
         default:
-            return state;
+            return auth;
     }
 }
 export default authReducer

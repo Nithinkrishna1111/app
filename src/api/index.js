@@ -4,7 +4,8 @@ const url = 'http://localhost:5000/posts'
 
 
 export const fetchLogin=()=> axios.get(url);
-export const validateLogin=(newLogin)=> axios.post(`${url}/login`,newLogin);
+
+export const validateLogin=(newLogin)=> axios.post(`${url}/login`,newLogin)
 export const createLogin=(newLogin)=> axios.post(url,newLogin)
 export const updatePost = (id, updatedPost) => axios.patch(`${url}/${id}`, updatedPost);
 export const createLoginQuote=(newLogin)=> axios.post('http://localhost:5000/posts/quote',newLogin)

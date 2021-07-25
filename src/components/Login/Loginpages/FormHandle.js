@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from "axios";
 import {useHistory} from "react-router-dom";
 import {useDispatch,useSelector} from "react-redux";
-import {updateUser,createUser} from "../../../actions/login";
+import {updateUser,createUser,validateUser} from "../../../actions/login";
 
 const querystring = require('querystring');
 const http = require('http');
@@ -63,6 +63,7 @@ const FormHandle=(callback,validation,onId,currentId)=>{
         e.preventDefault()
 
         console.log(values)
+        dispatch(validateUser(values))
 
         // console.log(users._id)
         if (typeof users !== 'undefined'){
