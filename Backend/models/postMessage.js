@@ -51,26 +51,26 @@ const postSchema = mongoose.Schema({
     date:{
         type:Date,
 
-    },
-    tokens:[{
-        token:{
-            type:String,
-            required:true
-        }
-    }]
+    }
+    // tokens:[{
+    //     token:{
+    //         type:String,
+    //         required:true
+    //     }
+    // }]
 
 })
-postSchema.methods.generateAuthToken = async function () {
-    const user = this
-    const token = jwt.sign({ _id: user._id.toString() }, 'softwaredesign')
-
-    user.tokens = user.tokens.concat({ token })
-    // console.log(user)
-    // console.log(token)
-    await user.save()
-
-    return token
-}
+// postSchema.methods.generateAuthToken = async function () {
+//     const user = this
+//     const token = jwt.sign({ _id: user._id.toString() }, 'softwaredesign')
+//
+//     user.tokens = user.tokens.concat({ token })
+//     // console.log(user)
+//     // console.log(token)
+//     await user.save()
+//
+//     return token
+// }
 
 
 postSchema.statics.findByCredentials = async (username, password) => {

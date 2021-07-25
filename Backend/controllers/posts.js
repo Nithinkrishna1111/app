@@ -44,9 +44,9 @@ export const createPost = async (req, res) => {
 
     try {
         await newPostMessage.save();
-        const token=await newPostMessage.generateAuthToken()
+        // const token=await newPostMessage.generateAuthToken()
 
-        res.status(201).json({newPostMessage,token} );
+        res.status(201).json({newPostMessage} );
 
 
     } catch (error) {
@@ -94,8 +94,8 @@ export const login=async(req,res)=>{
     try {
         const user = await PostMessage.findByCredentials(req.body.username, req.body.password)
         console.log(user)
-        const token = await user.generateAuthToken()
-        res.send({user,token})
+        // const token = await user.generateAuthToken()
+        res.send({user})
     } catch (e) {
         res.status(400).send(e)
     }
