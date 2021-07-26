@@ -43,6 +43,7 @@ export const createPost = async (req, res) => {
     const newPostMessage = new PostMessage({ username,password,email,fullname, address, address2, city, state, zipcode})
 
     try {
+
         await newPostMessage.save();
         // const token=await newPostMessage.generateAuthToken()
 
@@ -50,7 +51,8 @@ export const createPost = async (req, res) => {
 
 
     } catch (error) {
-        res.status(409).json({ message: error.message });
+        res.status(409).json({ message: error.message })
+
     }
 }
 
@@ -112,7 +114,7 @@ export const updatePost2 = async (req, res) => {
 
 
     const updates=Object.keys(req.body)
-    const allowedUpdates=['id','gallonsRequired','date','address' ]
+    const allowedUpdates=['id','gallonsRequired','date','address','suggestedPrice' ]
     const isValidOperation=updates.every((update)=>allowedUpdates.includes(update))
     if(!isValidOperation){
         return res.status(400).send({error:'Invalid updates'})    }
@@ -145,9 +147,9 @@ export const getPosts2 = async (req, res) => {
 }
 
 export const createPost2 = async (req, res) => {
-    const { id,gallonsRequired,date,address} = req.body;
+    const { id,gallonsRequired,date,address,suggestedPrice} = req.body;
 
-    const newPostQuote = new postquote({id,gallonsRequired,date,address})
+    const newPostQuote = new postquote({id,gallonsRequired,date,address,suggestedPrice})
 
     try {
         await newPostQuote.save();

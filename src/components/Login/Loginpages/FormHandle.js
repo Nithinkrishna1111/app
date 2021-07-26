@@ -3,7 +3,7 @@ import axios from "axios";
 import {useHistory} from "react-router-dom";
 import {useDispatch,useSelector} from "react-redux";
 import {updateUser,createUser,validateUser} from "../../../actions/login";
-
+import bcrypt from 'bcryptjs'
 const querystring = require('querystring');
 const http = require('http');
 
@@ -32,16 +32,30 @@ const FormHandle=(callback,validation,onId,currentId)=>{
 
     const [errors,setErrors]=useState({})
     const [isSubmit,setsubmit]=useState(false);
+    const [isSub,setsub]=useState(false);
 
 
     const values={username:enteredUsername,password:enteredpassword,email:enteredEmail,password2:enteredPassword2}
 
     // const users=useSelector((state) => currentId ? state.users.find((p)=>p._id===currentId):null);
 
-    const users=useSelector((state) => !currentId ? state.users.find((p)=>p.username===enteredUsername):null);
-    // console.log(users)
+    const users=useSelector((state) => state.users.find((p)=>p.username===enteredUsername));
+    // const nk=useSelector((state)=> state.auth.)
+    // console.log(nk)
     const dispatch=useDispatch()
     let history =useHistory();
+
+
+
+    //
+    // useEffect(() =>{
+    //
+    //     func()
+    //
+    //     },[enteredpassword])
+
+
+
 
     const data = querystring.stringify({
         username: enteredUsername,
@@ -59,6 +73,20 @@ const FormHandle=(callback,validation,onId,currentId)=>{
         }
     };
     const [uname,setUname]=useState(null)
+
+    if (typeof users !== 'undefined'&&users!=null && users.password!=null){
+            const isMatch =  bcrypt.compare(enteredpassword, users.password).then(data=>{
+                console.log(data)
+
+                setsub(data)
+
+
+            }).catch((e)=>{
+                console.log(e)
+            })}
+    console.log(users)
+
+    console.log(isSub)
     const refresh = e =>{
         e.preventDefault()
 
@@ -70,6 +98,15 @@ const FormHandle=(callback,validation,onId,currentId)=>{
             console.log(users._id,"above on id")
             onId(users._id)
             setUname(users.fullname)
+
+
+
+            // const func= async (enteredpassword) => {
+            //     const isMatch =  bcrypt.compare(enteredpassword, users.password)
+            //     console.log( isMatch)
+            // }
+            // func()
+
             console.log(users)
             console.log((typeof users._id))
             const myJSON = JSON.stringify(users._id);
@@ -84,7 +121,7 @@ const FormHandle=(callback,validation,onId,currentId)=>{
 
 
 
-        setErrors(validation(values,users))
+        setErrors(validation(values,users,isSub))
 
         setsubmit(true)
 
@@ -95,6 +132,9 @@ const FormHandle=(callback,validation,onId,currentId)=>{
         console.log(errors)
 
     };
+
+    console.log(isSub)
+
     const fuelquotehistory=()=>{
         if(uname!=null){
             console.log(uname,"if")
@@ -106,7 +146,7 @@ const FormHandle=(callback,validation,onId,currentId)=>{
 
 
     useEffect(() =>{
-        if(Object.keys(errors).length===0 && isSubmit){
+        if(Object.keys(errors).length===0 && isSub && isSubmit){
 
 
             callback();

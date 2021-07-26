@@ -40,7 +40,19 @@
     -webkit-animation: ease-in;
 
 }
+.logoutBtn button{
+    float: right;
+    
+    font: inherit;
+    cursor: pointer;
+    padding: 0.7rem 2rem;
+    border: 1px solid #40005d;
+    background-color: #40005d;
+    color: white;
+    border-radius: 7px;
+    margin-right: 1rem;
 
+}
 
 
 .top-bar{

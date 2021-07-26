@@ -1,4 +1,4 @@
-export default function Validationdata(values){
+export default function Validationdata(values,user){
     let errors={}
     if(!values.username.trim()){
         errors.username="username required"
@@ -19,6 +19,9 @@ export default function Validationdata(values){
         errors.email = 'Email required';
     } else if (!/\S+@\S+\.\S+/.test(values.email)) {
         errors.email = 'Email address is invalid';
+    }
+    if(user!=undefined){
+        errors.userExists='Username already exists'
     }
 
     return errors;

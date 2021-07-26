@@ -32,6 +32,7 @@ function FuelQuoteHistory({post}){
         <div>
 
 
+
             <div className='quote-item'>
 
                 <div className='date'>
@@ -45,7 +46,7 @@ function FuelQuoteHistory({post}){
                     <h2>Address: {post.address}</h2>
                     <h2>Gallons Requested:  {post.gallonsRequired}</h2>
 
-                    <div className='quote-item__price'>Total Amount Due:  {post.gallonsRequired * 5}$</div>
+                    <div className='quote-item__price'>Total Amount Due:  {post.gallonsRequired*post.suggestedPrice}$</div>
 
 
 

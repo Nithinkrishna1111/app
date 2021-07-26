@@ -1,5 +1,5 @@
 
-export default function Validationdata(values,users){
+export default function Validationdata(values,users,isSub){
     let errors={}
     if(!values.username.trim()){
         errors.username="username required"
@@ -14,9 +14,9 @@ export default function Validationdata(values,users){
 
         errors.userExists="Login not exists"
     }
-    // else if(typeof users !== 'undefined' && users.password!=values.password){
-    //     errors.userExists="Username and Password doesn't match"
-    // }
+    else if(typeof users !== 'undefined' && !isSub){
+         errors.userExists="Username and Password doesn't match"
+     }
 
 
     return errors;

@@ -29,7 +29,7 @@ export const createUser=(users)=>async(dispatch)=>{
 export const validateUser=(users)=>async(dispatch)=>{
     try{
         const{data}=await api.validateLogin(users);
-        dispatch({type:'VALIDATELOGIN',payload:data})
+        dispatch({type:'AUTH',payload:data})
     } catch (error){
         console.log(error)
 

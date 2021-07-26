@@ -24,13 +24,17 @@
 .RegisterForm-Input p{
     color: darkred;
     text-decoration-style: solid;
+    opacity: 100;}
+
+.RegisterBtn p{
+    color: darkred;
+    text-decoration-style: solid;
     opacity: 100;
-
-
-
-
-
 }
+
+
+
+
 .RegisterForm-Input select{
 
 }

@@ -2,8 +2,9 @@ import './FuelQuoteHistoryPage.css'
 
 import FuelQuoteHistory from "./FuelQuoteHistory";
 import {useSelector} from "react-redux";
+import {useHistory} from "react-router-dom";
 import { Grid, CircularProgress } from '@material-ui/core';
-import {useEffect,useState} from "react";
+import React, {useEffect,useState} from "react";
 import axios from "axios";
 import {useParams} from "react-router-dom";
 
@@ -23,6 +24,7 @@ const FuelQuoteHistoryPage=()=>{
     // console.log(quotes)
 
     // console.log(typeof id)
+    const history=useHistory()
     const quotes=useSelector((state) =>  state.quotes)
 
     console.log(quotes)
@@ -31,11 +33,20 @@ const FuelQuoteHistoryPage=()=>{
     console.log(filteredQuotes)
 
 
+    const logoutHandler=()=>{
+        history.push(history.push("/"))
 
+
+    }
 
 
     return(
         <div>
+            <form>
+                <div className='logoutBtn' onClick={logoutHandler}>
+                    <button type="submit" >LOGOUT</button>
+                </div>
+            </form>
             <div className='bg'>
                 <h1 className='Title'>Price Quote History</h1>
                 &nbsp;

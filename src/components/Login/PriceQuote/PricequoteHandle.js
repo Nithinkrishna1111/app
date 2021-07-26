@@ -8,7 +8,7 @@ const querystring = require('querystring');
 const http = require('http');
 
 const PricequoteHandle=(callback,validation,id)=>{
-    const [gallons, setGallons] = useState(0);
+    const [gallons, setGallons] = useState('');
     const gallonChangeHandler=(e) =>{
         setGallons(e.target.value)
     }
@@ -39,12 +39,46 @@ const PricequoteHandle=(callback,validation,id)=>{
         history.push(`/FuelQuoteHistory/${id}`)
     }
     const users=useSelector((state) =>  state.users.find((p)=>p._id===id));
+    const [loc,setLoc]=useState(0.4)
+    const [rateHis,setRateHis]=useState(0.01)
+    const[gallonsReq,setGallonsReq]=useState(0.03)
+    const companyProfit=0.1
+    const[suggPrice,setSuggPrice]=useState(0)
+    const quotes=useSelector((state) =>  state.quotes)
+    let filteredQuotes=quotes.filter(obj=>obj.id==id)
+    const LocationFactor=()=>{
+        if(users.state==="TX"){
+            setLoc(0.02)
+        }
+    }
+    const RateHistoryFactor=()=>{
+        if (typeof filteredQuotes==='undefined' || filteredQuotes===null){
+            setRateHis(0)
+        }
+    }
+    const GallonsRequestedFactor=()=>{
+        if(gallons>1000){
+            setGallonsReq(0.02)
+        }
+    }
+    const SuggestedPrice=()=>{
+        setSuggPrice(((loc-rateHis+gallonsReq+companyProfit)*1.50)+1.50)
+    }
+
+    const getQuote=(e)=>{
+        e.preventDefault()
+        LocationFactor()
+        RateHistoryFactor()
+        GallonsRequestedFactor()
+        SuggestedPrice()
+        console.log(loc,rateHis,gallonsReq,suggPrice)
+    }
 
     const dispatch=useDispatch()
     const refresh = e =>{
         e.preventDefault()
         const values={gallonsRequired:gallons,date:date}
-        const vals={id:id,gallonsRequired:gallons,date:date,address:users.address1}
+        const vals={id:id,gallonsRequired:gallons,date:date,address:users.address1,suggestedPrice:suggPrice}
 
         console.log(id,"id in priceqyote handle ")
 
@@ -65,6 +99,6 @@ const PricequoteHandle=(callback,validation,id)=>{
             }
         },[errors]
     );
-    return[refresh,errors,gallons,Delivery_Address,date,price,gallonChangeHandler,AddressChangeHandler,dateChangeHandler,priceChangeHandler]
+    return[refresh,errors,gallons,Delivery_Address,date,price,gallonChangeHandler,AddressChangeHandler,dateChangeHandler,priceChangeHandler,getQuote,suggPrice]
 }
 export default PricequoteHandle

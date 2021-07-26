@@ -84,6 +84,7 @@ const RegisterForm = ({onSubmit,currentId,onId}) => {
 
                     <div className='RegisterBtn' onClick={refresh}>
                         <button type="submit">Signup</button>
+                        {errors.userExists && <p>*{errors.userExists}</p>}
                     </div>
 
                     {/*{*/}
