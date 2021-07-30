@@ -82,7 +82,9 @@ const PricequoteHandle=(callback,validation,id)=>{
     //     setSugPrice(suggPrice.current)
     // },[suggPrice.current])
 
-    // const SuggestedPrice=()=>{
+    const SuggestedPrice=()=>{
+        setSugPrice(suggPrice.current)
+    }
     //
     //     // suggPrice:setSuggPrice(((loc-rateHis+gallonsReq+companyProfit)*1.50)+1.50)
     //     setTimeout(function(){
@@ -130,10 +132,10 @@ const PricequoteHandle=(callback,validation,id)=>{
         suggPrice.current=((loc-rateHis+gallonsReq+companyProfit)*1.50)+1.50
 
 
-        // SuggestedPrice()
+        SuggestedPrice()
         // setSuggPrice(((loc-rateHis+gallonsReq+companyProfit)*1.50)+1.50)
 
-        console.log(loc,rateHis,gallonsReq,suggPrice.current)
+        console.log(loc,rateHis,gallonsReq,suggPrice.current,sugPrice)
         console.log(typeof filteredQuotes)
         console.log(filteredQuotes)
     }
