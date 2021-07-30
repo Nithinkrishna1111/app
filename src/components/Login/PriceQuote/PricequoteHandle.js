@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect,useRef } from 'react';
 import {useHistory} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {updateUser,createUserQuote} from "../../../actions/login";
@@ -78,14 +78,25 @@ const PricequoteHandle=(callback,validation,id)=>{
         else {
             setLoc(0.04)
         }
+        if (typeof filteredQuotes !== 'undefined' || filteredQuotes!=null ){
+            setRateHis(0.01)
+        }
+        if(gallons>1000){
+            setGallonsReq(0.02)
+        }
+        else{
+            setGallonsReq(0.03)
+        }
+        // setSuggPrice(((loc-rateHis+gallonsReq+companyProfit)*1.50)+1.50)
 
-    },[loc,rateHis,gallonsReq])
+    },[loc,rateHis,gallonsReq,suggPrice])
 
     const getQuote=(e)=>{
         e.preventDefault()
         LocationFactor()
         RateHistoryFactor()
         GallonsRequestedFactor()
+        // useEffect(()=>{setSuggPrice(((loc-rateHis+gallonsReq+companyProfit)*1.50)+1.50)},[suggPrice])
         // SuggestedPrice()
         SuggestedPrice()
         setSuggPrice(((loc-rateHis+gallonsReq+companyProfit)*1.50)+1.50)
