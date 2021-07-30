@@ -1,6 +1,7 @@
 import { useState, useEffect,useRef } from 'react';
 import {useHistory} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
+
 import {updateUser,createUserQuote} from "../../../actions/login";
 import axios from "axios";
 const querystring = require('querystring');
@@ -39,36 +40,55 @@ const PricequoteHandle=(callback,validation,id)=>{
         history.push(`/FuelQuoteHistory/${id}`)
     }
     const users=useSelector((state) =>  state.users.find((p)=>p._id===id));
-    const [loc,setLoc]=useState(0.04)
+    const [loc,setLoc]=useState(0)
     const [rateHis,setRateHis]=useState(0)
-    const[gallonsReq,setGallonsReq]=useState(0.03)
-    const companyProfit=0.1
-    const[suggPrice,setSuggPrice]=useState(0)
+    const[gallonsReq,setGallonsReq]=useState(0)
+    // const companyProfit=0.1
+    const[companyProfit,setCompanyProfit]=useState(0.1)
+    const[sugPrice,setSugPrice]=useState(0)
     const quotes=useSelector((state) =>  state.quotes)
     let filteredQuotes=quotes.filter(obj=>obj.id==id)
     const LocationFactor=()=>{
-        if(users.state==="TX"){
-            setLoc(0.02)
-        }
-        else {
-            setLoc(0.04)
-        }
+        setTimeout(function(){
+            if(users.state==="TX"){
+                setLoc(0.02)
+            }
+            else {
+                setLoc(0.04)
+            }},10)
     }
     const RateHistoryFactor=()=>{
-        if (typeof filteredQuotes !== 'undefined' || filteredQuotes!=null ){
-            setRateHis(0.01)
-        }
-    }
+        setTimeout(function(){
+
+            if (typeof filteredQuotes !== 'undefined' || filteredQuotes!=null ){
+                setRateHis(0.01)
+            }
+    },10)}
     const GallonsRequestedFactor=()=>{
-        if(gallons>1000){
-            setGallonsReq(0.02)
-        }
-        else{
-            setGallonsReq(0.03)
-        }
+        setTimeout(function(){
+            if(gallons>1000){
+                setGallonsReq(0.02)
+            }
+            else{
+                setGallonsReq(0.03)
+            }},10)
     }
-    const SuggestedPrice=()=>{
-        setSuggPrice(((loc-rateHis+gallonsReq+companyProfit)*1.50)+1.50)
+    const suggPrice=useRef(0)
+
+    // const suggestedp=()=>{
+    //
+    // }
+    // useEffect(()=>{
+    //     setSugPrice(suggPrice.current)
+    // },[suggPrice.current])
+
+    // const SuggestedPrice=()=>{
+    //
+    //     // suggPrice:setSuggPrice(((loc-rateHis+gallonsReq+companyProfit)*1.50)+1.50)
+    //     setTimeout(function(){
+    //         setSuggPrice(((loc-rateHis+gallonsReq+companyProfit)*1.50)+1.50) },1000)}
+    const CompanyProfitFactor=()=>{
+        setCompanyProfit(0.1)
     }
     useEffect(()=>{
         // setSuggPrice(((loc-rateHis+gallonsReq+companyProfit)*1.50)+1.50)
@@ -87,30 +107,46 @@ const PricequoteHandle=(callback,validation,id)=>{
         else{
             setGallonsReq(0.03)
         }
+
+        // if(users.state==="TX" && gallons>1000 && (typeof filteredQuotes !== 'undefined' || filteredQuotes!=null )){
+        //     setSugPrice((0.02-0.01+0.02+0.1))
+        // }
+        // if(users.state==="TX" && gallons<1000 && (typeof filteredQuotes !== 'undefined' || filteredQuotes!=null )){
+        //     setSugPrice((0.02-0.01+0.02+0.1))
+        // }
+
         // setSuggPrice(((loc-rateHis+gallonsReq+companyProfit)*1.50)+1.50)
 
-    },[loc,rateHis,gallonsReq,suggPrice])
+    },[gallonsReq,suggPrice,rateHis,loc,gallons])
 
     const getQuote=(e)=>{
         e.preventDefault()
-        LocationFactor()
-        RateHistoryFactor()
-        GallonsRequestedFactor()
+        // LocationFactor()
+        // RateHistoryFactor()
+        // GallonsRequestedFactor()
+        // CompanyProfitFactor()
         // useEffect(()=>{setSuggPrice(((loc-rateHis+gallonsReq+companyProfit)*1.50)+1.50)},[suggPrice])
         // SuggestedPrice()
-        SuggestedPrice()
-        setSuggPrice(((loc-rateHis+gallonsReq+companyProfit)*1.50)+1.50)
-        console.log(loc,rateHis,gallonsReq,suggPrice)
+        suggPrice.current=((loc-rateHis+gallonsReq+companyProfit)*1.50)+1.50
+
+
+        // SuggestedPrice()
+        // setSuggPrice(((loc-rateHis+gallonsReq+companyProfit)*1.50)+1.50)
+
+        console.log(loc,rateHis,gallonsReq,suggPrice.current)
         console.log(typeof filteredQuotes)
         console.log(filteredQuotes)
     }
+    // useEffect(()=>{
+    //     setSugPrice(suggPrice.current)
+    // },[suggPrice.current])
 
 
     const dispatch=useDispatch()
     const refresh = e =>{
         e.preventDefault()
         const values={gallonsRequired:gallons,date:date}
-        const vals={id:id,gallonsRequired:gallons,date:date,address:users.address1,suggestedPrice:suggPrice}
+        const vals={id:id,gallonsRequired:gallons,date:date,address:users.address1,suggestedPrice:sugPrice}
 
         console.log(id,"id in priceqyote handle ")
 
@@ -131,6 +167,6 @@ const PricequoteHandle=(callback,validation,id)=>{
             }
         },[errors]
     );
-    return[refresh,errors,gallons,Delivery_Address,date,price,gallonChangeHandler,AddressChangeHandler,dateChangeHandler,priceChangeHandler,getQuote,suggPrice]
+    return[refresh,errors,gallons,Delivery_Address,date,price,gallonChangeHandler,AddressChangeHandler,dateChangeHandler,priceChangeHandler,getQuote,sugPrice]
 }
 export default PricequoteHandle
