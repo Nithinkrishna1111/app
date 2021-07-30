@@ -39,8 +39,8 @@ const PricequoteHandle=(callback,validation,id)=>{
         history.push(`/FuelQuoteHistory/${id}`)
     }
     const users=useSelector((state) =>  state.users.find((p)=>p._id===id));
-    const [loc,setLoc]=useState(0.4)
-    const [rateHis,setRateHis]=useState(0.01)
+    const [loc,setLoc]=useState(0.04)
+    const [rateHis,setRateHis]=useState(0)
     const[gallonsReq,setGallonsReq]=useState(0.03)
     const companyProfit=0.1
     const[suggPrice,setSuggPrice]=useState(0)
@@ -50,29 +50,50 @@ const PricequoteHandle=(callback,validation,id)=>{
         if(users.state==="TX"){
             setLoc(0.02)
         }
+        else {
+            setLoc(0.04)
+        }
     }
     const RateHistoryFactor=()=>{
-        if (typeof filteredQuotes==='undefined' || filteredQuotes===null){
-            setRateHis(0)
+        if (typeof filteredQuotes !== 'undefined' || filteredQuotes!=null ){
+            setRateHis(0.01)
         }
     }
     const GallonsRequestedFactor=()=>{
         if(gallons>1000){
             setGallonsReq(0.02)
         }
+        else{
+            setGallonsReq(0.03)
+        }
     }
     const SuggestedPrice=()=>{
         setSuggPrice(((loc-rateHis+gallonsReq+companyProfit)*1.50)+1.50)
     }
+    useEffect(()=>{
+        // setSuggPrice(((loc-rateHis+gallonsReq+companyProfit)*1.50)+1.50)
+        if(users.state==="TX"){
+            setLoc(0.02)
+        }
+        else {
+            setLoc(0.04)
+        }
+
+    },[loc,rateHis,gallonsReq])
 
     const getQuote=(e)=>{
         e.preventDefault()
         LocationFactor()
         RateHistoryFactor()
         GallonsRequestedFactor()
+        // SuggestedPrice()
         SuggestedPrice()
+        setSuggPrice(((loc-rateHis+gallonsReq+companyProfit)*1.50)+1.50)
         console.log(loc,rateHis,gallonsReq,suggPrice)
+        console.log(typeof filteredQuotes)
+        console.log(filteredQuotes)
     }
+
 
     const dispatch=useDispatch()
     const refresh = e =>{

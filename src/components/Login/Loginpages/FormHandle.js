@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from "axios";
 import {useHistory} from "react-router-dom";
 import {useDispatch,useSelector} from "react-redux";
-import {updateUser,createUser,validateUser} from "../../../actions/login";
+import {updateUser, createUser, validateUser, getUsers} from "../../../actions/login";
 import bcrypt from 'bcryptjs'
 const querystring = require('querystring');
 const http = require('http');
@@ -38,11 +38,16 @@ const FormHandle=(callback,validation,onId,currentId)=>{
     const values={username:enteredUsername,password:enteredpassword,email:enteredEmail,password2:enteredPassword2}
 
     // const users=useSelector((state) => currentId ? state.users.find((p)=>p._id===currentId):null);
+    const dispatch=useDispatch()
+
+    useEffect(()=>{
+        dispatch(getUsers())
+    },[enteredUsername])
 
     const users=useSelector((state) => state.users.find((p)=>p.username===enteredUsername));
     // const nk=useSelector((state)=> state.auth.)
     // console.log(nk)
-    const dispatch=useDispatch()
+
     let history =useHistory();
 
 

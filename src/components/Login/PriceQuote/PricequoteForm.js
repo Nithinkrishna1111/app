@@ -71,7 +71,7 @@ const PricequoteForm=( {onSubmit,id} )=> {
                         <input
                             name='Gallons Requested'
                             placeholder='Enter Gallons '
-                            type="number"
+                            type="number" pattern="[0-9]*" inputMode="numeric"
                             value={gallons}
                             onChange={gallonChangeHandler}
                         />
@@ -114,7 +114,7 @@ const PricequoteForm=( {onSubmit,id} )=> {
                     &nbsp;
                     <div className='LoginForm-Input'>
                         <label>Total Amount Due</label>
-                        <input readOnly value={gallons*suggPrice}placeholder='Quote' />
+                        <input readOnly name='total price' value={gallons*suggPrice}placeholder='Quote' />
 
                     </div>
                     &nbsp;

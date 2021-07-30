@@ -54,14 +54,18 @@ const FormHandle = (callback, validation,currentId,onId) => {
     const BasicInformationHandle = () => {
         history.push("/")
     }
-    dispatch(getUsers())
+    useEffect(()=>{
+        dispatch(getUsers())
+    },[enteredUsername])
 
     const user=useSelector((state) =>  state.users.find((p)=>p.username===enteredUsername));
+
     console.log(user)
 
     const refresh = async (e) => {
         e.preventDefault()
         dispatch(createUser(postData))
+
 
         setErrors(validation(values,user))
         setsubmit(true)
