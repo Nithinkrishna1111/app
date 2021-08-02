@@ -61,7 +61,11 @@ const PricequoteForm=( {onSubmit,id} )=> {
         <Router>
             <form >
                 <div className='logoutBtn' onClick={logoutHandler}>
-                    <button type="submit" >LOGOUT</button>
+                    <button type="submit" >Logout</button>
+                </div>
+
+                <div className='logoutBtn' onClick={historyHandler}>
+                    <button type="submit"  >PriceHistory</button>
                 </div>
                 &nbsp;&nbsp;&nbsp;
                 <div className='Login-Form'>
@@ -128,10 +132,7 @@ const PricequoteForm=( {onSubmit,id} )=> {
                     <div className='loginBtn' onClick={refresh}>
                         <button type="submit" disabled={!gallons || !date } >Submit</button>
                     </div>
-                    &nbsp;
-                    <div className='loginBtn' onClick={historyHandler}>
-                        <button type="submit"  >Submit</button>
-                    </div>
+
 
                 </div>
             </form>
