@@ -28,6 +28,9 @@ const PricequoteForm=( {onSubmit,id} )=> {
         history.push(history.push("/"))
 
     }
+    const historyHandler=()=>{
+        history.push(history.push("/FuelQuoteHistory"))
+    }
     //variable factors
 
     const users=useSelector((state) =>  state.users.find((p)=>p._id===id));
@@ -123,7 +126,11 @@ const PricequoteForm=( {onSubmit,id} )=> {
                     </div>
                     &nbsp;
                     <div className='loginBtn' onClick={refresh}>
-                        <button type="submit" disabled={!gallons || !date } >PriceHistory</button>
+                        <button type="submit" disabled={!gallons || !date } >Submit</button>
+                    </div>
+                    &nbsp;
+                    <div className='loginBtn' onClick={historyHandler}>
+                        <button type="submit"  >Submit</button>
                     </div>
 
                 </div>

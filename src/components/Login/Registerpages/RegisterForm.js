@@ -3,14 +3,19 @@ import './RegisterForm.css'
 import {BrowserRouter as Router} from 'react-router-dom'
 import FormHandle from './FormHandle'
 import RegisterImg from '../Home/user-icon-trendy-flat-style-260nw-418179865.jpeg';
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import validation from './Validation-register'
+import {useHistory} from "react-router-dom";
 import {useFormik} from "formik";
 
 
 const RegisterForm = ({onSubmit,currentId,onId}) => {
 
     const [refresh, errors, userChangeHandler, pwdChangeHandler, enteredpassword, enteredUsername, emailChangeHandler, pwdChangeHandler2, enteredEmail, enteredPassword2] = FormHandle(onSubmit, validation,currentId,onId)
+    const history=useHistory()
+    const loginHandler=()=>{
+        history.push(history.push("/"))
+    }
     // const [initialState, setInitialState] = useState([])
     // useEffect(()=>{
     //     fetchItems();
@@ -85,6 +90,10 @@ const RegisterForm = ({onSubmit,currentId,onId}) => {
                     <div className='RegisterBtn' onClick={refresh}>
                         <button type="submit">Signup</button>
                         {errors.userExists && <p>*{errors.userExists}</p>}
+                    </div>
+                    &nbsp;
+                    <div className='loginBtn' onClick={loginHandler}>
+                        <button type="submit"  >Signin</button>
                     </div>
 
                     {/*{*/}
