@@ -41,7 +41,7 @@ const PricequoteHandle=(callback,validation,id)=>{
     }
     const users=useSelector((state) =>  state.users.find((p)=>p._id===id));
     const [loc,setLoc]=useState(0)
-    const [rateHis,setRateHis]=useState(0)
+    const [rateHis,setRateHis]=useState(0.01)
     const[gallonsReq,setGallonsReq]=useState(0)
     // const companyProfit=0.1
     const[companyProfit,setCompanyProfit]=useState(0.1)
@@ -60,8 +60,8 @@ const PricequoteHandle=(callback,validation,id)=>{
     const RateHistoryFactor=()=>{
         setTimeout(function(){
 
-            if (typeof filteredQuotes !== 'undefined' || filteredQuotes!=null ){
-                setRateHis(0.01)
+            if ((Object.keys(filteredQuotes).length === 0 || filteredQuotes.constructor === Object )){
+                setRateHis(0)
             }
     },10)}
     const GallonsRequestedFactor=()=>{
@@ -100,8 +100,8 @@ const PricequoteHandle=(callback,validation,id)=>{
         else {
             setLoc(0.04)
         }
-        if (typeof filteredQuotes !== 'undefined' || filteredQuotes!=null ){
-            setRateHis(0.01)
+        if ((Object.keys(filteredQuotes).length === 0  ) ){
+            setRateHis(0)
         }
         if(gallons>1000){
             setGallonsReq(0.02)
@@ -137,7 +137,7 @@ const PricequoteHandle=(callback,validation,id)=>{
 
         console.log(loc,rateHis,gallonsReq,suggPrice.current,sugPrice)
         console.log(typeof filteredQuotes)
-        console.log(filteredQuotes)
+        console.log(filteredQuotes,Object.keys(filteredQuotes).length)
     }
     // useEffect(()=>{
     //     setSugPrice(suggPrice.current)
